@@ -1,0 +1,17 @@
+ru:
+  activerecord:
+    attributes:
+      tubing:
+        hit: "Хит продаж"
+        display: "Отображать"
+        manufacturer: "Производитель"
+        name: "Название"
+        price: "Цена"
+        image: "Превью"
+        description: "Описание"
+        bottom_material: "Материал низа"
+        top_material: "Материал верха"
+        diameter: "Диаметр"
+        handles_type: "Тип ручек"
+        tow_rope: "Трос"
+

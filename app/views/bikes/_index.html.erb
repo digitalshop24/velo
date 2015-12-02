@@ -1,0 +1,37 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <% class_type = 'bike' %>
+      <th><%= t "activerecord.attributes.#{class_type}.manufacturer" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.name" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.price" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.year" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.bike_class" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.bike_type" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.weight" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.display" %></th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bikes.each do |bike| %>
+      <tr>
+        <td><%= link_to bike.manufacturer.name, manufacturer_path(bike.manufacturer) %></td>
+        <td><%= link_to bike.name, bike_path(bike) %></td>
+        <td><%= bike.price %></td>
+        <td><%= bike.year %></td>
+        <td><%= bike.bike_class %></td>
+        <td><%= bike.bike_type %></td>
+        <td><%= bike.weight %></td>
+        <td>
+          <%= form_for(bike, url: "#{bike_path(bike)}.json", remote: true) do |f| %>
+            <%= f.check_box :display, id: "bike_display_#{bike.id}", class: 'display_checkbox' %>
+          <% end %>
+        </td>
+        <td><%= link_to t(:edit), edit_bike_path(bike) %></td>
+        <td><%= link_to t(:delete), bike, method: :delete, data: { confirm: t('confirmation') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @bikes %>

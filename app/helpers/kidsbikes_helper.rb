@@ -1,0 +1,2 @@
+module KidsbikesHelper
+end

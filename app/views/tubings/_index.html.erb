@@ -1,0 +1,33 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <% class_type = 'tubing' %>
+      <th><%= t "activerecord.attributes.#{class_type}.manufacturer" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.name" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.bottom_material" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.top_material" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.diameter" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.display" %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tubings.each do |tubing| %>
+      <tr>
+        <td><%= link_to tubing.manufacturer.name, manufacturer_path(tubing.manufacturer) %></td>
+        <td><%= link_to tubing.name, tubing_path(tubing) %></td>
+        <td><%= tubing.bottom_material %></td>
+        <td><%= tubing.top_material %></td>
+        <td><%= tubing.diameter %></td>
+        <td>
+          <%= form_for(tubing, url: "#{tubing_path(tubing)}.json", remote: true) do |f| %>
+            <%= f.check_box :display, id: "tubing_display_#{tubing.id}", class: 'display_checkbox' %>
+          <% end %>
+        </td>
+        <td><%= link_to t(:edit), edit_tubing_path(tubing) %></td>
+        <td><%= link_to t(:delete), tubing, method: :delete, data: { confirm: t('confirmation') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @tubings %>

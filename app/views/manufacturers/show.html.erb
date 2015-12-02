@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+<h2><%= "#{@manufacturer.name}" %></h2>
+<p>
+  <strong><%= t "activerecord.attributes.manufacturer.name" %>: </strong>
+  <%= @manufacturer.name %>
+</p>
+<p>
+  <strong><%= t "activerecord.attributes.manufacturer.category" %>: </strong>
+  <%= Manufacturer::CATEGORIES[@manufacturer.category.to_sym] %>
+</p>
+<% if @manufacturer.id %>
+  <%= link_to t(:edit), edit_manufacturer_path(@manufacturer) %>
+  <br>
+  <%= link_to 'Отображать', change_display_path(@manufacturer, '1'), class: 'btn btn-default btn-sm' %>
+  <%= link_to 'Не отображать', change_display_path(@manufacturer, '0'), class: 'btn btn-default btn-sm' %>
+<% end %>
+<span>
+  <%= "#{@manufacturer.send(@manufacturer.category.pluralize.to_sym).where(display: true).count}/#{@manufacturer.send(@manufacturer.category.pluralize.to_sym).count}" %>
+</span>
+<br>
+<br>
+<% case @manufacturer.category %>
+<% when 'bike' then @bikes = @manufacturer.bikes.order(:name).paginate(:page => params[:page]) %>
+<% when 'kickscooter' then @kickscooters = @manufacturer.kickscooters.order(:name).paginate(:page => params[:page]) %>
+<% when 'kidsbike' then @kidsbikes = @manufacturer.kidsbikes.order(:name).paginate(:page => params[:page]) %>
+<% when 'snowroll' then @snowrolls = @manufacturer.snowrolls.order(:name).paginate(:page => params[:page]) %>
+<% when 'sled' then @sleds = @manufacturer.sleds.order(:name).paginate(:page => params[:page]) %>
+<% when 'icesled' then @icesleds = @manufacturer.icesleds.order(:name).paginate(:page => params[:page]) %>
+<% when 'tubing' then @tubings = @manufacturer.tubings.order(:name).paginate(:page => params[:page]) %>
+<% when 'electriccar' then @electriccars = @manufacturer.electriccars.order(:name).paginate(:page => params[:page]) %>
+<% when 'trike' then @trikes = @manufacturer.trikes.order(:name).paginate(:page => params[:page]) %>
+<% when 'ski' then @skis = @manufacturer.skis.order(:name).paginate(:page => params[:page]) %>
+<% end %>
+<%= render "#{@manufacturer.category.pluralize}/index" %>

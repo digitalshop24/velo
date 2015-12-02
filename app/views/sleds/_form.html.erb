@@ -1,0 +1,100 @@
+<%= form_for(@sled, :html => { :multipart => true }) do |f| %>
+  <% if @sled.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sled.errors.count, "error") %> prohibited this sled from being saved:</h2>
+      <ul>
+        <% @sled.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :manufacturer %><br>
+    <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'sled'), :id, :name, :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :recommended_age %><br>
+    <%= f.text_field :recommended_age %>
+  </div>
+  <div class="field">
+    <%= f.label :handle %><br>
+    <%= f.check_box :handle %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :runners_width %><br>
+    <%= f.number_field :runners_width %>
+  </div>
+  <div class="field">
+    <%= f.label :seat_belt %><br>
+    <%= f.check_box :seat_belt %>
+  </div>
+  <div class="field">
+    <%= f.label :seat_belt_type %><br>
+    <%= f.text_field :seat_belt_type %>
+  </div>
+  <div class="field">
+    <%= f.label :folding_visor %><br>
+    <%= f.check_box :folding_visor %>
+  </div>
+  <div class="field">
+    <%= f.label :folding_visor_type %><br>
+    <%= f.text_field :folding_visor_type %>
+  </div>
+  <div class="field">
+    <%= f.label :bag %><br>
+    <%= f.check_box :bag %>
+  </div>
+  <div class="field">
+    <%= f.label :flicker %><br>
+    <%= f.check_box :flicker %>
+  </div>
+  <div class="field">
+    <%= f.label :backrest_adjustment %><br>
+    <%= f.check_box :backrest_adjustment %>
+  </div>
+  <div class="field">
+    <%= f.label :color %><br>
+    <%= f.text_field :color %>
+  </div>
+  <div class="field">
+    <%= f.label :transport_wheel %><br>
+    <%= f.check_box :transport_wheel %>
+  </div>
+  <div class="field">
+    <%= f.label :legs_case %><br>
+    <%= f.check_box :legs_case %>
+  </div>
+  <div class="field">
+    <%= f.label :display %><br>
+    <%= f.check_box :display %>
+  </div>
+  <div class="field">
+      <%= f.label :hit %><br>
+      <%= f.check_box :hit %>
+  </div>
+  <div>
+    <% @product = @sled %>
+    <%= render 'layouts/gallery_edit' %>
+  </div>
+  <%= f.fields_for :gallery do |g| %>
+    <div class="control-group">
+      <%= file_field_tag "images[]", type: :file, multiple: true, accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit 'Сохранить', class: "btn btn-primary" %>
+  </div>
+<% end %>

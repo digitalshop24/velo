@@ -1,0 +1,13 @@
+<% if @product.image.size %>
+  <div>
+    <%= t :preview %>
+    <%= image_tag @product.image.url %>
+  </div>
+<% end %>
+<% if @product.gallery %>
+  <div>
+    <% @product.gallery.images.each do |image| %>
+      <%= link_to image_tag(image.image.url, height: '120'), image.image.url, :target => '_blank' %>
+    <% end %>
+  </div>
+<% end %>

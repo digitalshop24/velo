@@ -1,0 +1,304 @@
+<%= form_for(@bike, :html => { :multipart => true }) do |f| %>
+  <% if @bike.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bike.errors.count, "error") %> prohibited this bike from being saved:</h2>
+      <ul>
+        <% @bike.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :display %><br>
+    <%= f.check_box :display %>
+  </div>
+  <div class="field">
+    <%= f.label :manufacturer %><br>
+    <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'bike'), :id, :name, :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :bike_class %><br>
+    <%= f.collection_select :bike_class, Bike::BIKE_CLASSES, :to_s, :to_s, :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :bike_type %><br>
+    <%= f.collection_select :bike_type, Bike::BIKE_TYPES, :to_s, :to_s, :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :frame_type %><br>
+    <%= f.collection_select :frame_type, Bike::FRAME_TYPES, :to_s, :to_s, :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :handlebar %><br>
+    <%= f.text_field :handlebar %>
+  </div>
+  <div class="field">
+    <%= f.label :chain %><br>
+    <%= f.text_field :chain %>
+  </div>
+  <div class="field">
+    <%= f.label :fork %><br>
+    <%= f.text_field :fork %>
+  </div>
+  <div class="field">
+    <%= f.label :pomp %><br>
+    <%= f.check_box :pomp %>
+  </div>
+  <div class="field">
+    <%= f.label :rims %><br>
+    <%= f.text_field :rims %>
+  </div>
+  <div class="field">
+    <%= f.label :saddle %><br>
+    <%= f.text_field :saddle %>
+  </div>
+  <div class="field">
+    <%= f.label :roga %><br>
+    <%= f.check_box :roga %>
+  </div>
+  <div class="field">
+    <%= f.label :grips %><br>
+    <%= f.text_field :grips %>
+  </div>
+  <div class="field">
+    <%= f.label :light %><br>
+    <%= f.check_box :light %>
+  </div>
+  <div class="field">
+    <%= f.label :carriage %><br>
+    <%= f.text_field :carriage %>
+  </div>
+  <div class="field">
+    <%= f.label :basket %><br>
+    <%= f.check_box :basket %>
+  </div>
+  <div class="field">
+    <%= f.label :shifters %><br>
+    <%= f.text_field :shifters %>
+  </div>
+  <div class="field">
+    <%= f.label :handlebar_type %><br>
+    <%= f.text_field :handlebar_type %>
+  </div>
+  <div class="field">
+    <%= f.label :luggage_rack %><br>
+    <%= f.check_box :luggage_rack %>
+  </div>
+  <div class="field">
+    <%= f.label :footboard %><br>
+    <%= f.check_box :footboard %>
+  </div>
+  <div class="field">
+    <%= f.label :tires %><br>
+    <%= f.text_field :tires %>
+  </div>
+  <div class="field">
+    <%= f.label :fork_type %><br>
+    <%= f.text_field :fork_type %>
+  </div>
+  <div class="field">
+    <%= f.label :saddle_type %><br>
+    <%= f.text_field :saddle_type %>
+  </div>
+  <div class="field">
+    <%= f.label :frame_color %><br>
+    <%= f.text_field :frame_color, value: @bike.frame_color.join(', ') %>
+  </div>
+  <div class="field">
+    <%= f.label :chain_protection %><br>
+    <%= f.check_box :chain_protection %>
+  </div>
+  <div class="field">
+    <%= f.label :shifters_type %><br>
+    <%= f.text_field :shifters_type %>
+  </div>
+  <div class="field">
+    <%= f.label :pedal_type %><br>
+    <%= f.text_field :pedal_type %>
+  </div>
+  <div class="field">
+    <%= f.label :handlebar_width %><br>
+    <%= f.text_field :handlebar_width %>
+  </div>
+  <div class="field">
+    <%= f.label :tires_width %><br>
+    <%= f.text_field :tires_width %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_fender %><br>
+    <%= f.check_box :rear_fender %>
+  </div>
+  <div class="field">
+    <%= f.label :grips_model %><br>
+    <%= f.text_field :grips_model %>
+  </div>
+  <div class="field">
+    <%= f.label :double_rims %><br>
+    <%= f.check_box :double_rims %>
+  </div>
+  <div class="field">
+    <%= f.label :wheels_diameter %><br>
+    <%= f.text_field :wheels_diameter %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_brake %><br>
+    <%= f.text_field :rear_brake %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_hub %><br>
+    <%= f.text_field :rear_hub %>
+  </div>
+  <div class="field">
+    <%= f.label :frame_material %><br>
+    <%= f.text_field :frame_material %>
+  </div>
+  <div class="field">
+    <%= f.label :folding_frame %><br>
+    <%= f.check_box :folding_frame %>
+  </div>
+  <div class="field">
+    <%= f.label :front_fender %><br>
+    <%= f.check_box :front_fender %>
+  </div>
+  <div class="field">
+    <%= f.label :front_hub %><br>
+    <%= f.text_field :front_hub %>
+  </div>
+  <div class="field">
+    <%= f.label :front_brake %><br>
+    <%= f.text_field :front_brake %>
+  </div>
+  <div class="field">
+    <%= f.label :crank_system %><br>
+    <%= f.text_field :crank_system %>
+  </div>
+  <div class="field">
+    <%= f.label :amortization_type %><br>
+    <%= f.text_field :amortization_type %>
+  </div>
+  <div class="field">
+    <%= f.label :transmission_type %><br>
+    <%= f.text_field :transmission_type %>
+  </div>
+  <div class="field">
+    <%= f.label :fork_locking %><br>
+    <%= f.check_box :fork_locking %>
+  </div>
+  <div class="field">
+    <%= f.label :rims_material %><br>
+    <%= f.text_field :rims_material %>
+  </div>
+  <div class="field">
+    <%= f.label :pedal_material %><br>
+    <%= f.text_field :pedal_material %>
+  </div>
+  <div class="field">
+    <%= f.label :absorber_length %><br>
+    <%= f.text_field :absorber_length %>
+  </div>
+  <div class="field">
+    <%= f.label :saddle_amortization %><br>
+    <%= f.check_box :saddle_amortization %>
+  </div>
+  <div class="field">
+    <%= f.label :horn %><br>
+    <%= f.check_box :horn %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_absorber %><br>
+    <%= f.check_box :rear_absorber %>
+  </div>
+  <div class="field">
+    <%= f.label :tread %><br>
+    <%= f.text_field :tread %>
+  </div>
+  <div class="field">
+    <%= f.label :fork_rod_diameter %><br>
+    <%= f.text_field :fork_rod_diameter %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_brake_type %><br>
+    <%= f.text_field :rear_brake_type %>
+  </div>
+  <div class="field">
+    <%= f.label :rearview_mirror %><br>
+    <%= f.check_box :rearview_mirror %>
+  </div>
+  <div class="field">
+    <%= f.label :ratchet %><br>
+    <%= f.text_field :ratchet %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_derailleur %><br>
+    <%= f.text_field :rear_derailleur %>
+  </div>
+  <div class="field">
+    <%= f.label :speeds_number %><br>
+    <%= f.number_field :speeds_number %>
+  </div>
+  <div class="field">
+    <%= f.label :front_break_type %><br>
+    <%= f.text_field :front_break_type %>
+  </div>
+  <div class="field">
+    <%= f.label :front_derailleur %><br>
+    <%= f.text_field :front_derailleur %>
+  </div>
+  <div class="field">
+    <%= f.label :brake_disks_diameter %><br>
+    <%= f.text_field :brake_disks_diameter %>
+  </div>
+  <div class="field">
+    <%= f.label :stars_number_cassette %><br>
+    <%= f.number_field :stars_number_cassette %>
+  </div>
+  <div class="field">
+    <%= f.label :stars_number_system %><br>
+    <%= f.number_field :stars_number_system %>
+  </div>
+  <div class="field">
+    <%= f.label :teeth_number_cassette %><br>
+    <%= f.number_field :teeth_number_cassette %>
+  </div>
+  <div class="field">
+    <%= f.label :teeth_number_system %><br>
+    <%= f.number_field :teeth_number_system %>
+  </div>
+  <div class="field">
+    <%= f.label :hit %><br>
+    <%= f.check_box :hit %>
+  </div>
+  <div>
+    <% @product = @bike %>
+    <%= render 'layouts/gallery_edit' %>
+  </div>
+  <%= f.fields_for :gallery do |g| %>
+    <div class="control-group">
+      <%= file_field_tag "images[]", type: :file, multiple: true, accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit 'Сохранить', class: "btn btn-primary" %>
+  </div>
+<% end %>

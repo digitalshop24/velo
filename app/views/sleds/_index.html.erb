@@ -1,0 +1,31 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <% class_type = 'sled' %>
+      <th><%= t "activerecord.attributes.#{class_type}.manufacturer" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.name" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.runners_width" %></th>
+      <th><%= t "activerecord.attributes.#{class_type}.display" %></th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sleds.each do |sled| %>
+      <tr>
+        <td><%= link_to sled.manufacturer.name, manufacturer_path(sled.manufacturer) %></td>
+        <td><%= link_to sled.name, sled_path(sled) %></td>
+        <td><%= sled.runners_width %></td>
+        <td>
+          <%= form_for(sled, url: "#{sled_path(sled)}.json", remote: true) do |f| %>
+            <%= f.check_box :display, id: "sled_display_#{sled.id}", class: 'display_checkbox' %>
+          <% end %>
+        </td>
+        <td><%= link_to t(:edit), edit_sled_path(sled) %></td>
+        <td><%= link_to t(:delete), sled, method: :delete, data: { confirm: t('confirmation') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @sleds %>
+

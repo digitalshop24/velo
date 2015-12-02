@@ -1,0 +1,73 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufacturer_id: 
+  name: MyString
+  price: 1
+  description: MyText
+  image: 
+  use: MyString
+  electric_drive: false
+  max_weight: 1
+  wheels_number: 1
+  wheels_diameter: 1
+  wheels_thickness: 1
+  wheels_material: MyString
+  wheels_hardness: MyString
+  inflatable_wheels: false
+  bearings: MyString
+  platform_material: MyString
+  folding: false
+  seat: false
+  amortization: false
+  front_break: false
+  rear_break: false
+  tilt_handle_control: false
+  wheels_luminodiodes: false
+  min_handlebar_height: 1
+  max_handlebar_height: 1
+  platform_length: 1
+  platform_width: 1
+  length: 1
+  weight: 1.5
+  horn: false
+  basket: false
+  footboard: false
+  belt: false
+  display: false
+
+two:
+  manufacturer_id: 
+  name: MyString
+  price: 1
+  description: MyText
+  image: 
+  use: MyString
+  electric_drive: false
+  max_weight: 1
+  wheels_number: 1
+  wheels_diameter: 1
+  wheels_thickness: 1
+  wheels_material: MyString
+  wheels_hardness: MyString
+  inflatable_wheels: false
+  bearings: MyString
+  platform_material: MyString
+  folding: false
+  seat: false
+  amortization: false
+  front_break: false
+  rear_break: false
+  tilt_handle_control: false
+  wheels_luminodiodes: false
+  min_handlebar_height: 1
+  max_handlebar_height: 1
+  platform_length: 1
+  platform_width: 1
+  length: 1
+  weight: 1.5
+  horn: false
+  basket: false
+  footboard: false
+  belt: false
+  display: false

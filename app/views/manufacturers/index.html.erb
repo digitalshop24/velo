@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+<h1>
+  <% if @category %>
+    Производители <%= t("#{@category.to_s}_genitive_plural") %>
+  <% else %>
+    <%= t('all', product_class: 'производители') %>
+  <% end %>
+</h1>
+<%= render 'index' %>
+<br>
+<% if @category %>
+  <%= render "#{@category.pluralize}/links" %>
+<% end %>
+<%= link_to t(:creating, product_class: t('activerecord.models.manufacturer')), new_manufacturer_path , class: "btn btn-default"%>

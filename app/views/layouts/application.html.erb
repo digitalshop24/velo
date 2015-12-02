@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RealBike.by</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar-header">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'RealBike', admin_path, class: "navbar-brand" %>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <% Manufacturer::CATEGORIES.each do |category|%>
+          <li>
+            <%= link_to t("#{category[0].to_s}_plural"), "/admin/manufacturers/category/#{category[0]}" %>
+          </li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= render 'layouts/login_links' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <%= yield %>
+    <%= link_to t(:back), "javascript:history.back()", class: 'btn btn-default' %>
+  </div>
+  <br>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= t('all', product_class: t('bike_plural')) %></h1>
+
+<%= render 'index' %>
+
+<br>
+
+<%= link_to t('creating', product_class: t('activerecord.models.bike')), new_bike_path, class: 'btn btn-default' %>

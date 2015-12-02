@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    models:
+      hit: "Хит продаж"
+      bike: велосипед
+      kidsbike: "детский велосипед"
+      sled: санки
+      icesled: ледянка
+      snowroll: снегокат
+      kickscooter: самокат
+      tubing: тюбинг
+      electriccar: элекстромобиль
+      ski: лыжи

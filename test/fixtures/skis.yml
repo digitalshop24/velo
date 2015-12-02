@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufacturer_id: 
+  name: MyString
+  price: 1
+  poles: false
+  grid: false
+  size: 1
+  description: MyText
+  display: false
+  image: 
+
+two:
+  manufacturer_id: 
+  name: MyString
+  price: 1
+  poles: false
+  grid: false
+  size: 1
+  description: MyText
+  display: false
+  image: 

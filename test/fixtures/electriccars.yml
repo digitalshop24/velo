@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufacturer_id: 
+  name: MyString
+  price: 1
+  age: MyString
+  remote_control: false
+  max_speed: 1
+  battery: MyString
+  engine: MyString
+  work_time: MyString
+  charging_time: MyString
+  max_weight: 1
+  weight: 1
+  sizes: MyString
+  light: MyString
+  seat_belt: false
+  rearview_mirror: false
+  description: MyText
+  image: 
+
+two:
+  manufacturer_id: 
+  name: MyString
+  price: 1
+  age: MyString
+  remote_control: false
+  max_speed: 1
+  battery: MyString
+  engine: MyString
+  work_time: MyString
+  charging_time: MyString
+  max_weight: 1
+  weight: 1
+  sizes: MyString
+  light: MyString
+  seat_belt: false
+  rearview_mirror: false
+  description: MyText
+  image: 

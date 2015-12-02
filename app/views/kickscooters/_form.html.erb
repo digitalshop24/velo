@@ -1,0 +1,160 @@
+<%= form_for(@kickscooter, :html => { :multipart => true }) do |f| %>
+  <% if @kickscooter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kickscooter.errors.count, "error") %> prohibited this kickscooter from being saved:</h2>
+      <ul>
+        <% @kickscooter.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :manufacturer %><br>
+    <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'kickscooter'), :id, :name, :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :use %><br>
+    <%= f.text_field :use %>
+  </div>
+  <div class="field">
+    <%= f.label :electric_drive %><br>
+    <%= f.check_box :electric_drive %>
+  </div>
+  <div class="field">
+    <%= f.label :max_weight %><br>
+    <%= f.number_field :max_weight %>
+  </div>
+  <div class="field">
+    <%= f.label :wheels_number %><br>
+    <%= f.number_field :wheels_number %>
+  </div>
+  <div class="field">
+    <%= f.label :wheels_diameter %><br>
+    <%= f.number_field :wheels_diameter %>
+  </div>
+  <div class="field">
+    <%= f.label :wheels_thickness %><br>
+    <%= f.number_field :wheels_thickness %>
+  </div>
+  <div class="field">
+    <%= f.label :wheels_material %><br>
+    <%= f.text_field :wheels_material %>
+  </div>
+  <div class="field">
+    <%= f.label :wheels_hardness %><br>
+    <%= f.text_field :wheels_hardness %>
+  </div>
+  <div class="field">
+    <%= f.label :inflatable_wheels %><br>
+    <%= f.check_box :inflatable_wheels %>
+  </div>
+  <div class="field">
+    <%= f.label :bearings %><br>
+    <%= f.text_field :bearings %>
+  </div>
+  <div class="field">
+    <%= f.label :platform_material %><br>
+    <%= f.text_field :platform_material %>
+  </div>
+  <div class="field">
+    <%= f.label :folding %><br>
+    <%= f.check_box :folding %>
+  </div>
+  <div class="field">
+    <%= f.label :seat %><br>
+    <%= f.check_box :seat %>
+  </div>
+  <div class="field">
+    <%= f.label :amortization %><br>
+    <%= f.check_box :amortization %>
+  </div>
+  <div class="field">
+    <%= f.label :front_break %><br>
+    <%= f.check_box :front_break %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_break %><br>
+    <%= f.check_box :rear_break %>
+  </div>
+  <div class="field">
+    <%= f.label :tilt_handle_control %><br>
+    <%= f.check_box :tilt_handle_control %>
+  </div>
+  <div class="field">
+    <%= f.label :wheels_luminodiodes %><br>
+    <%= f.check_box :wheels_luminodiodes %>
+  </div>
+  <div class="field">
+    <%= f.label :min_handlebar_height %><br>
+    <%= f.number_field :min_handlebar_height %>
+  </div>
+  <div class="field">
+    <%= f.label :max_handlebar_height %><br>
+    <%= f.number_field :max_handlebar_height %>
+  </div>
+  <div class="field">
+    <%= f.label :platform_length %><br>
+    <%= f.number_field :platform_length %>
+  </div>
+  <div class="field">
+    <%= f.label :platform_width %><br>
+    <%= f.number_field :platform_width %>
+  </div>
+  <div class="field">
+    <%= f.label :length %><br>
+    <%= f.number_field :length %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :horn %><br>
+    <%= f.check_box :horn %>
+  </div>
+  <div class="field">
+    <%= f.label :basket %><br>
+    <%= f.check_box :basket %>
+  </div>
+  <div class="field">
+    <%= f.label :footboard %><br>
+    <%= f.check_box :footboard %>
+  </div>
+  <div class="field">
+    <%= f.label :belt %><br>
+    <%= f.check_box :belt %>
+  </div>
+  <div class="field">
+    <%= f.label :display %><br>
+    <%= f.check_box :display %>
+  </div>
+  <div class="field">
+      <%= f.label :hit %><br>
+      <%= f.check_box :hit %>
+  </div>
+  <div>
+    <% @product = @kickscooter %>
+    <%= render 'layouts/gallery_edit' %>
+  </div>
+  <%= f.fields_for :gallery do |g| %>
+    <div class="control-group">
+      <%= file_field_tag "images[]", type: :file, multiple: true, accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit 'Сохранить', class: "btn btn-primary" %>
+  </div>
+<% end %>

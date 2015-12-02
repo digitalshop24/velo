@@ -1,0 +1,100 @@
+<%= form_for(@electriccar, :html => { :multipart => true }) do |f| %>
+  <% if @electriccar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@electriccar.errors.count, "error") %> prohibited this electriccar from being saved:</h2>
+      <ul>
+        <% @electriccar.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :manufacturer %><br>
+    <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'electriccar'), :id, :name, :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.text_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :remote_control %><br>
+    <%= f.check_box :remote_control %>
+  </div>
+  <div class="field">
+    <%= f.label :max_speed %><br>
+    <%= f.number_field :max_speed %>
+  </div>
+  <div class="field">
+    <%= f.label :battery %><br>
+    <%= f.text_field :battery %>
+  </div>
+  <div class="field">
+    <%= f.label :engine %><br>
+    <%= f.text_field :engine %>
+  </div>
+  <div class="field">
+    <%= f.label :work_time %><br>
+    <%= f.text_field :work_time %>
+  </div>
+  <div class="field">
+    <%= f.label :charging_time %><br>
+    <%= f.text_field :charging_time %>
+  </div>
+  <div class="field">
+    <%= f.label :max_weight %><br>
+    <%= f.number_field :max_weight %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.number_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :sizes %><br>
+    <%= f.text_field :sizes %>
+  </div>
+  <div class="field">
+    <%= f.label :light %><br>
+    <%= f.text_field :light %>
+  </div>
+  <div class="field">
+    <%= f.label :seat_belt %><br>
+    <%= f.check_box :seat_belt %>
+  </div>
+  <div class="field">
+    <%= f.label :rearview_mirror %><br>
+    <%= f.check_box :rearview_mirror %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :display %><br>
+    <%= f.check_box :display %>
+  </div>
+  <div class="field">
+    <%= f.label :hit %><br>
+    <%= f.check_box :hit %>
+  </div>
+  <div>
+    <% @product = @electriccar %>
+    <%= render 'layouts/gallery_edit' %>
+  </div>
+  <%= f.fields_for :gallery do |g| %>
+    <div class="control-group">
+      <%= file_field_tag "images[]", type: :file, multiple: true, accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit 'Сохранить', class: "btn btn-primary" %>
+  </div>
+<% end %>

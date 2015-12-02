@@ -1,0 +1,24 @@
+ru:
+  activerecord:
+    attributes:
+      sled:
+        hit: "Хит продаж"
+        display: "Отображать"
+        manufacturer: "Производитель"
+        name: "Название"
+        price: "Цена"
+        image: "Превью"
+        description: "Описание"
+        runners_width: "Ширина полозьев"
+        seat_belt: "Ремень безопасности"
+        seat_belt_type: "Тип ремня безопасности"
+        folding_visor: "Складой козырёк"
+        folding_visor_type: "Тип складного козырька"
+        bag: "Сумка"
+        flicker: "Светоотражающий кант"
+        backrest_adjustment: "Регулировка спинки"
+        color: "Цвет"
+        transport_wheel: "Колесо для удобной транспортировки"
+        legs_case: "Чехол для ног"
+        recommended_age: "Рекомендуемый возраст"
+        handle: "Ручка"

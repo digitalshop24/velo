@@ -1,0 +1,91 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  manufacturer_id: 
+  image: 
+  recommended_age: MyString
+  use: MyString
+  weight: 1.5
+  seat: MyString
+  seat_belts: false
+  handle: false
+  control_handle: false
+  safety_rim: false
+  visor: false
+  music_unit: false
+  frame_material: MyString
+  folding_frame: false
+  frame_color: MyString
+  fork: MyString
+  fork_type: MyString
+  speeds_number: 1
+  rear_derailleur: MyString
+  shifters: MyString
+  shifters_type: MyString
+  front_brake_type: MyString
+  rear_brake_type: MyString
+  wheels_number: 1
+  wheels_diameter: 1.5
+  front_wheel_diameter: 1.5
+  attached_wheels: false
+  wheels_type: MyString
+  rear_wheels_stopper: false
+  raincoat: false
+  front_fender: MyString
+  rear_fender: MyString
+  chain_protection: false
+  luggage_rack: false
+  rearview_mirror: false
+  horn: false
+  basket: false
+  bag: false
+  flag: false
+  footboard: false
+  light: false
+  pomp: false
+
+two:
+  name: MyString
+  manufacturer_id: 
+  image: 
+  recommended_age: MyString
+  use: MyString
+  weight: 1.5
+  seat: MyString
+  seat_belts: false
+  handle: false
+  control_handle: false
+  safety_rim: false
+  visor: false
+  music_unit: false
+  frame_material: MyString
+  folding_frame: false
+  frame_color: MyString
+  fork: MyString
+  fork_type: MyString
+  speeds_number: 1
+  rear_derailleur: MyString
+  shifters: MyString
+  shifters_type: MyString
+  front_brake_type: MyString
+  rear_brake_type: MyString
+  wheels_number: 1
+  wheels_diameter: 1.5
+  front_wheel_diameter: 1.5
+  attached_wheels: false
+  wheels_type: MyString
+  rear_wheels_stopper: false
+  raincoat: false
+  front_fender: MyString
+  rear_fender: MyString
+  chain_protection: false
+  luggage_rack: false
+  rearview_mirror: false
+  horn: false
+  basket: false
+  bag: false
+  flag: false
+  footboard: false
+  light: false
+  pomp: false

@@ -1,0 +1,60 @@
+<%= form_for(@icesled, :html => { :multipart => true }) do |f| %>
+  <% if @icesled.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@icesled.errors.count, "error") %> prohibited this icesled from being saved:</h2>
+      <ul>
+        <% @icesled.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :display %><br>
+    <%= f.check_box :display %>
+  </div>
+  <div class="field">
+    <%= f.label :manufacturer %><br>
+    <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'icesled'), :id, :name, :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :material %><br>
+    <%= f.text_field :material %>
+  </div>
+  <div class="field">
+    <%= f.label :handles %><br>
+    <%= f.check_box :handles %>
+  </div>
+  <div class="field">
+    <%= f.label :length %><br>
+    <%= f.number_field :length %>
+  </div>
+  <div class="field">
+      <%= f.label :hit %><br>
+      <%= f.check_box :hit %>
+  </div>
+  <p>
+    <% @product = @icesled %>
+    <%= render 'layouts/gallery_edit' %>
+  </p>
+  <%= f.fields_for :gallery do |g| %>
+    <div class="control-group">
+      <%= file_field_tag "images[]", type: :file, multiple: true, accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit 'Сохранить', class: "btn btn-primary" %>
+  </div>
+<% end %>

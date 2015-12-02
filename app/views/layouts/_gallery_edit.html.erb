@@ -1,0 +1,21 @@
+<div id="gallery">
+  <% if @product.image.size %>
+    <div>
+      <%= t :preview %>
+      <%= image_tag @product.image.url %>
+    </div>
+  <% end %>
+  <% if @product.gallery %>
+    <div>
+      <% @product.gallery.images.each do |image| %>
+        <div style="display:inline-block">
+          <%= link_to image_tag(image.image.url, height: '120'), image.image.url, :target => '_blank' %>
+          <p align="center">
+            <%= link_to t(:delete), image_path(@product, image), data: { confirm: t(:confirmation) }, method: :delete %>
+            <%= link_to t(:make_preview), preview_path(@product.class.name, @product, image), data: { confirm: "Are you sure?" }, method: :get %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

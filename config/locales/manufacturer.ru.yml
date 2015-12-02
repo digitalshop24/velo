@@ -1,0 +1,9 @@
+ru:
+  activerecord:
+    models:
+      manufacturer: производитель      
+      manufacturer_p: производители   
+    attributes:
+      manufacturer:
+        name: Название
+        category: Категория

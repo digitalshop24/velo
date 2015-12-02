@@ -1,0 +1,23 @@
+ru:
+  activerecord:
+    attributes:
+      electriccar:
+        hit: "Хит продаж"
+        display: "Отображать"
+        manufacturer: "Производитель"
+        name: "Название"
+        price: "Цена"
+        description: "Описание"
+        age: "Возрастная категория"
+        remote_control: "Пульт дистанционного управления"
+        max_speed: "Максимальная скорость"
+        battery: "Аккумулятор"
+        engine: "Двигатель"
+        work_time: "Время работы"
+        charging_time: "Время зарядки"
+        max_weight: "Максимальная нагрузка"
+        weight: "Вес машины"
+        sizes: "Размеры авто"
+        light: "Свет фар"
+        seat_belt: "Ремни безопасности"
+        rearview_mirror: "Зеркала заднего вида"

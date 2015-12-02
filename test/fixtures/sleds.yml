@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufacturer_id: 
+  name: MyString
+  image: 
+  description: MyText
+  runners_width: 1
+  seat_belt: false
+  seat_belt_type: MyString
+  folding_visor: false
+  folding_visor_type: MyString
+  bag: false
+  flicker: false
+  backrest_adjustment: false
+  color: MyString
+  transport_wheel: MyString
+  legs_case: false
+  display: false
+
+two:
+  manufacturer_id: 
+  name: MyString
+  image: 
+  description: MyText
+  runners_width: 1
+  seat_belt: false
+  seat_belt_type: MyString
+  folding_visor: false
+  folding_visor_type: MyString
+  bag: false
+  flicker: false
+  backrest_adjustment: false
+  color: MyString
+  transport_wheel: MyString
+  legs_case: false
+  display: false

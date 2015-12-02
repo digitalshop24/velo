@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    attributes:
+      icesled:
+        hit: "Хит продаж"
+        display: "Отображать"
+        manufacturer: "Производитель"
+        name: "Название"
+        price: "Цена"
+        description: "Описание"
+        material: "Материал"
+        handles: "Ручки"
+        length: "Длина"

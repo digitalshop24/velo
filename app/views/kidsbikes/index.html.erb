@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+<h1><%= t('all', product_class: 'детские велосипеды') %></h1>
+<%= render 'index' %>
+
+<br>
+
+<%= link_to t('creating', product_class: t('activerecord.models.kidsbike')), new_kidsbike_path, class: 'btn btn-default' %>
