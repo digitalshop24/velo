@@ -7,7 +7,6 @@ module API
       end
       expose :name
       expose :price
-      expose :length
       expose :image
     end
     class Icesled < ProductEntity
@@ -15,14 +14,16 @@ module API
       expose :manufacturer do |icesled|
         icesled.manufacturer.name
       end
-      expose :name
-      expose :image
-      expose :price
-      expose :description
+      with_options(format_with: :to_s_ru) do
+        expose :name
+        expose :image
+        expose :price
+        expose :description
 
-      expose :material
-      with_options(format_with: :to_s_ru){ expose :handles }
-      expose :length
+        expose :material
+        expose :handles
+        expose :length
+      end
       expose :type do |product|
         product.class.name.downcase
       end
@@ -48,7 +49,7 @@ module API
       format :json
       content_type :json, "application/json;charset=UTF-8"
       rescue_from :all
-      
+
       resource :icesleds do
         params do
           optional :page, type: Integer, desc: "Page"

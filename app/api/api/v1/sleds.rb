@@ -7,10 +7,6 @@ module API
       end
       expose :name
       expose :price
-      with_options(format_with: :to_s_ru) { expose :seat_belt }
-      with_options(format_with: :to_s_ru) { expose :transport_wheel }
-      with_options(format_with: :to_s_ru) { expose :handle }
-      expose :recommended_age
       expose :image
     end
     class Sled < ProductEntity
@@ -18,24 +14,26 @@ module API
       expose :manufacturer do |sled|
         sled.manufacturer.name
       end
-      expose :name
-      expose :image
-      expose :price
-      expose :description
+      with_options(format_with: :to_s_ru) do
+        expose :name
+        expose :image
+        expose :price
+        expose :description
 
-      expose :recommended_age
-      expose :runners_width
-      with_options(format_with: :to_s_ru) { expose :seat_belt }
-      with_options(format_with: :to_s_ru) { expose :transport_wheel }
-      with_options(format_with: :to_s_ru) { expose :handle }
-      expose :seat_belt_type
-      with_options(format_with: :to_s_ru) { expose :folding_visor }
-      expose :folding_visor_type
-      with_options(format_with: :to_s_ru) { expose :bag }
-      with_options(format_with: :to_s_ru) { expose :flicker }
-      with_options(format_with: :to_s_ru) { expose :backrest_adjustment }
-      expose :color
-      with_options(format_with: :to_s_ru) { expose :legs_case }
+        expose :recommended_age
+        expose :runners_width
+        expose :seat_belt
+        expose :transport_wheel
+        expose :handle
+        expose :seat_belt_type
+        expose :folding_visor
+        expose :folding_visor_type
+        expose :bag
+        expose :flicker
+        expose :backrest_adjustment
+        expose :color
+        expose :legs_case
+      end
       expose :type do |product|
         product.class.name.downcase
       end

@@ -7,9 +7,6 @@ module API
       end
       expose :name
       expose :price
-      expose :work_time
-      expose :battery
-      expose :max_weight
       expose :image
     end
     class Electriccar < ProductEntity
@@ -17,24 +14,26 @@ module API
       expose :manufacturer do |electriccar|
         electriccar.manufacturer.name
       end
-      expose :name
-      expose :image
-      expose :price
-      expose :description
+      with_options(format_with: :to_s_ru) do
+        expose :name
+        expose :image
+        expose :price
+        expose :description
 
-      expose :age
-      with_options(format_with: :to_s_ru) { expose :remote_control }
-      expose :max_speed
-      expose :battery
-      expose :engine
-      expose :work_time
-      expose :charging_time
-      expose :max_weight
-      expose :weight
-      expose :sizes
-      expose :light
-      with_options(format_with: :to_s_ru) { expose :seat_belt }
-      with_options(format_with: :to_s_ru) { expose :rearview_mirror }
+        expose :age
+        expose :remote_control
+        expose :max_speed
+        expose :battery
+        expose :engine
+        expose :work_time
+        expose :charging_time
+        expose :max_weight
+        expose :weight
+        expose :sizes
+        expose :light
+        expose :seat_belt
+        expose :rearview_mirror
+      end
 
       expose :similar, using: API::Entities::ElectriccarPreview do |electriccar|
         electriccar.similar()

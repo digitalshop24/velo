@@ -7,8 +7,6 @@ module API
       end
       expose :name
       expose :price
-      expose :seats_number
-      expose :carrying
       expose :image
     end
     class Snowroll < ProductEntity
@@ -16,16 +14,18 @@ module API
       expose :manufacturer do |snowroll|
         snowroll.manufacturer.name
       end
-      expose :name
-      expose :image
-      expose :price
-      expose :description
+      with_options(format_with: :to_s_ru) do
+        expose :name
+        expose :image
+        expose :price
+        expose :description
 
-      expose :seats_number
-      expose :carrying
+        expose :seats_number
+        expose :carrying
+      end
 
       expose :similar, using: API::Entities::SnowrollPreview do |snowroll|
-        snowroll.similar()
+        snowroll.similar(:seats_number)
       end
 
       expose :gallery do |snowroll|

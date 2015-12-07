@@ -15,71 +15,67 @@ module API
           "детский"
         end
       end
-      expose :wheels_diameter
-      expose :kid_height
-      expose :recommended_age
-      expose :wheels_material
-      with_options(format_with: :to_s_ru) { expose :light }
-      with_options(format_with: :to_s_ru) { expose :sloping_backrest }
     end
     class Kidsbike < ProductEntity
       expose :id
       expose :manufacturer do |kidsbike|
         kidsbike.manufacturer.name
       end
-      expose :name
-      expose :image
-      expose :price
-      expose :description
+      with_options(format_with: :to_s_ru) do
+        expose :name
+        expose :image
+        expose :price
+        expose :description
 
-      expose :recommended_age
-      expose :kid_height
-      expose :wheels_material
-      with_options(format_with: :to_s_ru) { expose :sloping_backrest }
-      expose :use
-      expose :weight
-      expose :seat
-      with_options(format_with: :to_s_ru) { expose :seat_belts }
-      with_options(format_with: :to_s_ru) { expose :handle }
-      with_options(format_with: :to_s_ru) { expose :control_handle }
-      with_options(format_with: :to_s_ru) { expose :safety_rim }
-      with_options(format_with: :to_s_ru) { expose :visor }
-      with_options(format_with: :to_s_ru) { expose :music_unit }
-      expose :frame_material
-      with_options(format_with: :to_s_ru) { expose :folding_frame }
-      expose :frame_color
-      expose :fork
-      expose :fork_type
-      expose :speeds_number
-      expose :rear_derailleur
-      expose :shifters
-      expose :shifters_type
-      expose :front_brake_type
-      expose :rear_brake_type
-      expose :wheels_number
-      expose :wheels_diameter
-      expose :front_wheel_diameter
-      expose :attached_wheels
-      expose :wheels_type
-      with_options(format_with: :to_s_ru) { expose :rear_wheels_stopper }
-      with_options(format_with: :to_s_ru) { expose :raincoat }
-      with_options(format_with: :to_s_ru) { expose :front_fender }
-      with_options(format_with: :to_s_ru) { expose :rear_fender }
-      with_options(format_with: :to_s_ru) { expose :chain_protection }
-      with_options(format_with: :to_s_ru) { expose :luggage_rack }
-      with_options(format_with: :to_s_ru) { expose :rearview_mirror }
-      with_options(format_with: :to_s_ru) { expose :horn }
-      with_options(format_with: :to_s_ru) { expose :basket }
-      with_options(format_with: :to_s_ru) { expose :bag }
-      with_options(format_with: :to_s_ru) { expose :flag }
-      with_options(format_with: :to_s_ru) { expose :footboard }
-      with_options(format_with: :to_s_ru) { expose :light }
-      with_options(format_with: :to_s_ru) { expose :pomp }
+        expose :recommended_age
+        expose :kid_height
+        expose :wheels_material
+        expose :sloping_backrest
+        expose :use
+        expose :weight
+        expose :seat
+        expose :seat_belts
+        expose :handle
+        expose :control_handle
+        expose :safety_rim
+        expose :visor
+        expose :music_unit
+        expose :frame_material
+        expose :folding_frame
+        expose :frame_color
+        expose :fork
+        expose :fork_type
+        expose :speeds_number
+        expose :rear_derailleur
+        expose :shifters
+        expose :shifters_type
+        expose :front_brake_type
+        expose :rear_brake_type
+        expose :wheels_number
+        expose :wheels_diameter
+        expose :front_wheel_diameter
+        expose :attached_wheels
+        expose :wheels_type
+        expose :rear_wheels_stopper
+        expose :raincoat
+        expose :front_fender
+        expose :rear_fender
+        expose :chain_protection
+        expose :luggage_rack
+        expose :rearview_mirror
+        expose :horn
+        expose :basket
+        expose :bag
+        expose :flag
+        expose :footboard
+        expose :light
+        expose :pomp
+      end
       expose :bike_class do |kidsbike|
         "детский"
       end
       expose :similar, using: API::Entities::KidsbikePreview do |kidsbike|
-        kidsbike.similar()
+        kidsbike.similar(:wheels_number, :use)
       end
       expose :gallery do |kidsbike|
         if kidsbike.gallery

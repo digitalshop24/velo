@@ -7,9 +7,6 @@ module API
       end
       expose :name
       expose :price
-      with_options(format_with: :to_s_ru) { expose :poles }
-      with_options(format_with: :to_s_ru) { expose :grid }
-      expose :size
       expose :image
     end
     class Ski < ProductEntity
@@ -17,14 +14,16 @@ module API
       expose :manufacturer do |ski|
         ski.manufacturer.name
       end
-      expose :name
-      expose :image
-      expose :price
-      expose :description
+      with_options(format_with: :to_s_ru) do
+        expose :name
+        expose :image
+        expose :price
+        expose :description
 
-      with_options(format_with: :to_s_ru) { expose :poles }
-      with_options(format_with: :to_s_ru) { expose :grid }
-      expose :size
+        expose :poles
+        expose :grid
+        expose :size
+      end
 
       expose :similar, using: API::Entities::SkiPreview do |ski|
         ski.similar()

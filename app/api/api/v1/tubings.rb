@@ -7,7 +7,6 @@ module API
       end
       expose :name
       expose :price
-      expose :diameter
       expose :image
     end
     class Tubing < ProductEntity
@@ -15,16 +14,18 @@ module API
       expose :manufacturer do |tubing|
         tubing.manufacturer.name
       end
-      expose :name
-      expose :image
-      expose :price
-      expose :description
+      with_options(format_with: :to_s_ru) do
+        expose :name
+        expose :image
+        expose :price
+        expose :description
 
-      expose :bottom_material
-      expose :top_material
-      expose :diameter
-      expose :handles_type
-      with_options(format_with: :to_s_ru) { expose :tow_rope }
+        expose :bottom_material
+        expose :top_material
+        expose :diameter
+        expose :handles_type
+        expose :tow_rope
+      end
 
       expose :similar, using: API::Entities::TubingPreview do |tubing|
         tubing.similar()

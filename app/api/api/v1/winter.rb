@@ -7,18 +7,13 @@ module API
       expose :manufacturer do |product|
         product.manufacturer.name
       end
-      expose :name
-      expose :price
-      expose :image
-
       expose :type do |product|
         product.class.name.downcase
       end
-      expose :length, safe: true
-      with_options(format_with: :to_s_ru) { expose :seat_belt, safe: true }
-      with_options(format_with: :to_s_ru) { expose :transport_wheel, safe: true }
-      with_options(format_with: :to_s_ru) { expose :handle, safe: true }
-      expose :recommended_age, safe: true
+
+      expose :name
+      expose :price
+      expose :image
     end
   end
 end
