@@ -57,8 +57,7 @@ namespace :deploy do
       execute "mkdir  /var/www/apps/#{application}/socket/"
       execute "mkdir #{shared_path}/system"
 
-      upload!('shared/database.yml', "#{shared_path}/config/database.yml")
-      upload!('shared/secrets.yml', "#{shared_path}/config/secrets.yml")
+      upload!('shared/application.yml', "#{shared_path}/config/application.yml")
 
       upload!('shared/Procfile', "#{shared_path}/Procfile")
 
@@ -73,10 +72,9 @@ namespace :deploy do
   desc 'Create symlink'
   task :symlink do
     on roles(:all) do
-      execute "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+      execute "ln -s #{shared_path}/config/application.yml #{release_path}/config/application.yml"
       execute "ln -s #{shared_path}/Procfile #{release_path}/Procfile"
       execute "ln -s #{shared_path}/system #{release_path}/public/system"
-      execute "ln -s #{shared_path}/config/secrets.yml #{release_path}/config/secrets.yml"
     end
   end
 

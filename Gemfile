@@ -31,6 +31,7 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'devise', '~> 3.5.2'
 gem 'will_paginate', '~> 3.0.6'
 gem 'russian', '~> 0.6.0'
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 
 gem 'grape', '~> 0.13.0'
 gem 'grape-entity', '~> 0.4.8'
