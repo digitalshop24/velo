@@ -1,4 +1,5 @@
 class SkisController < ApplicationController
+  load_and_authorize_resource
   before_action :set_ski, only: [:show, :edit, :update, :destroy]
 
   # GET /skis

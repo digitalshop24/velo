@@ -1,5 +1,5 @@
 class TubingsController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
   before_action :set_tubing, only: [:show, :edit, :update, :destroy]
 
   # GET /tubings

@@ -1,0 +1,7 @@
+ru:
+  activerecord:
+    attributes:
+      user:
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        role: "Роль"

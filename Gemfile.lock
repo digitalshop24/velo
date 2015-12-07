@@ -52,6 +52,7 @@ GEM
       sass (>= 3.3.0)
     builder (3.2.2)
     byebug (6.0.2)
+    cancancan (1.13.1)
     capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
@@ -259,6 +260,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.3.5)
   byebug
+  cancancan (~> 1.13, >= 1.13.1)
   capistrano (~> 3.4.0)
   capistrano-bundler
   capistrano-rails
