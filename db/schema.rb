@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207125932) do
+ActiveRecord::Schema.define(version: 20151214122019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -280,6 +280,23 @@ ActiveRecord::Schema.define(version: 20151207125932) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "skates", force: :cascade do |t|
+    t.integer  "manufacturer_id"
+    t.string   "name"
+    t.integer  "price"
+    t.text     "description"
+    t.boolean  "display"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean  "hit"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "skates", ["manufacturer_id"], name: "index_skates_on_manufacturer_id", using: :btree
+
   create_table "skis", force: :cascade do |t|
     t.integer  "manufacturer_id"
     t.string   "name"
@@ -396,6 +413,7 @@ ActiveRecord::Schema.define(version: 20151207125932) do
   add_foreign_key "images", "galleries"
   add_foreign_key "kickscooters", "manufacturers"
   add_foreign_key "kidsbikes", "manufacturers"
+  add_foreign_key "skates", "manufacturers"
   add_foreign_key "skis", "manufacturers"
   add_foreign_key "sleds", "manufacturers"
   add_foreign_key "snowrolls", "manufacturers"

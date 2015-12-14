@@ -10,6 +10,7 @@ module API
       mount API::V1::Tubings
       mount API::V1::Electriccars
       mount API::V1::Skis
+      mount API::V1::Skates
 
       mount API::V1::Winter
     end

@@ -1,0 +1,10 @@
+ru:
+  activerecord:
+    attributes:
+      skate:
+        hit: "Хит продаж"
+        display: "Отображать"
+        manufacturer: "Производитель"
+        name: "Название"
+        price: "Цена"
+        description: "Описание"

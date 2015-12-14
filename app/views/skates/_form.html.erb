@@ -1,0 +1,48 @@
+<%= form_for(@skate, :html => { :multipart => true }) do |f| %>
+  <% if @skate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@skate.errors.count, "error") %> prohibited this skate from being saved:</h2>
+      <ul>
+        <% @skate.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :manufacturer_id %><br>
+    <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'skate'), :id, :name, prompt: true %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :display %><br>
+    <%= f.check_box :display %>
+  </div>
+  <div>
+    <% @product = @skate %>
+    <%= render 'layouts/gallery_edit' %>
+  </div>
+  <div class="field">
+    <%= f.label :hit %><br>
+    <%= f.check_box :hit %>
+  </div>
+  <%= f.fields_for :gallery do |g| %>
+    <div class="control-group">
+      <%= file_field_tag "images[]", type: :file, multiple: true, accept: 'image/png,image/gif,image/jpeg' %>
+    </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

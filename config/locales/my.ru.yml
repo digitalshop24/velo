@@ -23,6 +23,7 @@ ru:
   electriccar_plural: "Электромобили"
   trike_plural: "Трайки"
   ski_plural: "Лыжи"
+  skate_plural: "Коньки"
   bike_genitive_plural: "велосипедов"
   kidsbike_genitive_plural: "детских велосипедов"
   kickscooter_genitive_plural: "самокатов"
@@ -33,3 +34,4 @@ ru:
   electriccar_genitive_plural: "электромобилей"
   trike_genitive_plural: "трайков"
   ski_genitive_plural: "лыж"
+  skate_genitive_plural: "коньков"
