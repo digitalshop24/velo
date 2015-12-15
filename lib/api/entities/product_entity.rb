@@ -9,6 +9,7 @@ module API
           value.to_s.empty? ? 'нет данных' : value
         end        
       end
+      expose :hit
     end
   end
 end
