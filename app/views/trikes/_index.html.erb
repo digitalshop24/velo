@@ -26,7 +26,7 @@
             <%= f.check_box :display, id: "kidsbike_display_#{trike.id}", class: 'display_checkbox' %>
           <% end %>
         </td>
-        <td><%= link_to t(:edit), edit_kidsbike_path(trike) %></td>
+        <td><%= link_to t(:edit), edit_kidsbike_path(trike) + "?category=trike" %></td>
         <td><%= link_to t(:delete), trike, method: :delete, data: { confirm: t('confirmation') } %></td>
       </tr>
     <% end %>

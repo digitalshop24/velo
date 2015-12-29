@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sportgoodscategory_id: 
+  manufacturer_id: 
+  name: MyString
+  price: 1
+  description: MyText
+
+two:
+  sportgoodscategory_id: 
+  manufacturer_id: 
+  name: MyString
+  price: 1
+  description: MyText

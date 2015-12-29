@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Все подкатегории спорттоваров</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sportgoods_subcategories.each do |sportgoods_subcategory| %>
+      <tr>
+        <td><%= sportgoods_subcategory.name %></td>
+        <td><%= link_to 'Редактировать', edit_sportgoods_subcategory_path(sportgoods_subcategory) %></td>
+        <td><%= link_to 'Удалить', sportgoods_subcategory, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Создать подкатегорию', new_sportgoods_subcategory_path %>

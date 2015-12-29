@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214122019) do
+ActiveRecord::Schema.define(version: 20151229093623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -366,6 +366,40 @@ ActiveRecord::Schema.define(version: 20151214122019) do
 
   add_index "snowrolls", ["manufacturer_id"], name: "index_snowrolls_on_manufacturer_id", using: :btree
 
+  create_table "sportgoods", force: :cascade do |t|
+    t.integer  "sportgoods_category_id"
+    t.integer  "sportgoods_subcategory_id"
+    t.integer  "manufacturer_id"
+    t.string   "name"
+    t.integer  "price"
+    t.text     "description"
+    t.boolean  "display"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean  "hit"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "sportgoods", ["manufacturer_id"], name: "index_sportgoods_on_manufacturer_id", using: :btree
+  add_index "sportgoods", ["sportgoods_category_id"], name: "index_sportgoods_on_sportgoods_category_id", using: :btree
+  add_index "sportgoods", ["sportgoods_subcategory_id"], name: "index_sportgoods_on_sportgoods_subcategory_id", using: :btree
+
+  create_table "sportgoods_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sportgoods_subcategories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "sportgoods_category_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "tubings", force: :cascade do |t|
     t.string   "name"
     t.integer  "manufacturer_id"
@@ -417,5 +451,8 @@ ActiveRecord::Schema.define(version: 20151214122019) do
   add_foreign_key "skis", "manufacturers"
   add_foreign_key "sleds", "manufacturers"
   add_foreign_key "snowrolls", "manufacturers"
+  add_foreign_key "sportgoods", "manufacturers"
+  add_foreign_key "sportgoods", "sportgoods_categories"
+  add_foreign_key "sportgoods", "sportgoods_subcategories"
   add_foreign_key "tubings", "manufacturers"
 end

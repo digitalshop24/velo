@@ -24,6 +24,7 @@ ru:
   trike_plural: "Трайки"
   ski_plural: "Лыжи"
   skate_plural: "Коньки"
+  sportgood_plural: "Спорттовары"
   bike_genitive_plural: "велосипедов"
   kidsbike_genitive_plural: "детских велосипедов"
   kickscooter_genitive_plural: "самокатов"
@@ -35,3 +36,4 @@ ru:
   trike_genitive_plural: "трайков"
   ski_genitive_plural: "лыж"
   skate_genitive_plural: "коньков"
+  sportgood_genitive_plural: "спорттоваров"

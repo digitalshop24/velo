@@ -31,5 +31,6 @@
 <% when 'trike' then @trikes = @manufacturer.trikes.order(:name).paginate(:page => params[:page]) %>
 <% when 'ski' then @skis = @manufacturer.skis.order(:name).paginate(:page => params[:page]) %>
 <% when 'skate' then @skates = @manufacturer.skates.order(:name).paginate(:page => params[:page]) %>
+<% when 'sportgood' then @sportgoods = @manufacturer.sportgoods.order(:name).paginate(:page => params[:page]) %>
 <% end %>
 <%= render "#{@manufacturer.category.pluralize}/index" %>

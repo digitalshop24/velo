@@ -2,7 +2,7 @@ class Manufacturer < ActiveRecord::Base
   include Product
   CATEGORIES = { bike: 'Велосипед', kidsbike: 'Детский велосипед', trike: 'Трайк', kickscooter: 'Самокат',
                 sled: 'Санки', icesled: 'Ледянка', snowroll: 'Снегокат', tubing: 'Тюбинг', 
-                electriccar: 'Электромобиль', ski: 'Лыжи', skate: 'Коньки'}
+                electriccar: 'Электромобиль', ski: 'Лыжи', skate: 'Коньки', sportgood: 'Спорттовары'}
   has_many :bikes, dependent: :destroy
   has_many :kidsbikes, dependent: :destroy
   has_many :kickscooters, dependent: :destroy
@@ -13,6 +13,7 @@ class Manufacturer < ActiveRecord::Base
   has_many :electriccars, dependent: :destroy
   has_many :skis, dependent: :destroy
   has_many :skates, dependent: :destroy
+  has_many :sportgoods, dependent: :destroy
 
   alias trikes kidsbikes
 end

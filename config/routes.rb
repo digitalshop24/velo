@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   scope path: '/admin' do
+    resources :sportgoods
+    resources :sportgoods_categories
+    resources :sportgoods_subcategories
     resources :skates
     resources :snowrolls
     resources :icesleds

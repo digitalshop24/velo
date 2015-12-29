@@ -1,0 +1,24 @@
+<%= form_for(@sportgoods_subcategory) do |f| %>
+  <% if @sportgoods_subcategory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sportgoods_subcategory.errors.count, "error") %> prohibited this sportgoods_subcategory from being saved:</h2>
+
+      <ul>
+      <% @sportgoods_subcategory.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :sportgoods_category %><br>
+    <%= f.collection_select :sportgoods_category_id, SportgoodsCategory.all, :id, :name, :prompt => true, required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
+  </div>
+<% end %>

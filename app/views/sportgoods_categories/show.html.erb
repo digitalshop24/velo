@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<h1><%= @sportgoods_category.name %><h1>
+<p>
+  <strong>Название:</strong>
+  <%= @sportgoods_category.name %>
+</p>
+
+<%= link_to 'Редактировать', edit_sportgoods_category_path(@sportgoods_category) %> |
+<%= link_to 'Удалить', sportgoods_categories_path %>

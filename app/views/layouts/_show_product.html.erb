@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h2><%= "#{@product.manufacturer.name} #{@product.name}" %></h2>
-<% attrs = @product.attributes.map(&:first) - ["id", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at", "manufacturer_id"] %>
+<% attrs = @product.attributes.map(&:first) - ["id", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at", "manufacturer_id", "sportgoods_category_id", "sportgoods_subcategory_id"] %>
+<% attrs = ["sportgoods_category_name", "sportgoods_subcategory_name"] + attrs if @product.class.name == 'Sportgood' %>
 <p>
   <strong><%= t "activerecord.attributes.#{@product.class.to_s.downcase}.manufacturer" %>: </strong>
   <%= link_to t(@product.manufacturer.name), manufacturer_path(@product.manufacturer) %>
@@ -9,9 +10,9 @@
   <p>
     <strong><%= t "activerecord.attributes.#{@product.class.to_s.downcase}.#{attr.downcase}" %>: </strong>
     <% if @product[attr.to_sym] == !!@product[attr.to_sym] %>
-      <%= t @product[attr.to_sym].to_s %>
+      <%= t @product.send(attr.to_sym).to_s %>
     <% else %>
-      <%= @product[attr.to_sym] %>
+      <%= @product.send(attr.to_sym) %>
     <% end %>
   </p>
 <% end %>
