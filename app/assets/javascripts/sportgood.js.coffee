@@ -1,6 +1,6 @@
 $ ->
   $(document).on 'change', '#sportgood_sportgoods_category_id', (evt) ->
-    $.ajax 'update_categories',
+    $.ajax '/admin/sportgoods/update_categories',
       type: 'GET'
       dataType: 'script'
       data: {

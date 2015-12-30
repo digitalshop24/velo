@@ -92,7 +92,7 @@ class SportgoodsController < ApplicationController
   private
   def set_categories
     @sportgoods_categories = SportgoodsCategory.all
-    @sportgoods_subcategories = []
+    @sportgoods_subcategories = SportgoodsSubcategory.where(sportgoods_category_id: @sportgood.sportgoods_category_id)
   end
   # Use callbacks to share common setup or constraints between actions.
   def set_sportgood
