@@ -10,4 +10,6 @@ ru:
         image: "Превью"
         description: "Описание"
         sportgoods_category_name: "Категория"
+        sportgoods_category: "Категория"
         sportgoods_subcategory_name: "Подкатегория"
+        sportgoods_subcategory: "Подкатегория"
