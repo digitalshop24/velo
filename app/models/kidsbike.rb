@@ -12,4 +12,7 @@ class Kidsbike < ActiveRecord::Base
   Paperclip.interpolates :galleryable_path  do |attachment, style|
     "#{attachment.instance.gallery.galleryable_type.downcase}/#{attachment.instance.gallery.galleryable_id}"
   end
+
+  scope :trikes, -> { where(bike_type: 'трайк') }
+  scope :kidsbikes, -> { where(bike_type: 'детский') }
 end

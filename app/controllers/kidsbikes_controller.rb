@@ -4,9 +4,9 @@ class KidsbikesController < ApplicationController
 
   def index
     if params[:category] == 'trike'
-      @kidsbikes = Kidsbike.joins(:manufacturer).where("manufacturers.category = 'trike'").paginate(:page => params[:page])
+      @kidsbikes = Kidsbike.trikes.paginate(:page => params[:page])
     else
-      @kidsbikes = Kidsbike.preload(:manufacturer).paginate(:page => params[:page])
+      @kidsbikes = Kidsbike.kidsbikes.paginate(:page => params[:page])
     end
   end
 
@@ -22,6 +22,11 @@ class KidsbikesController < ApplicationController
 
   def create
     parms = kidsbike_params
+    if Manufacturer.find(params[:manufacturer_id]).category == 'trike'
+      parms[:bike_type] = 'трайк'
+    elsif Manufacturer.find(params[:manufacturer_id]).category == 'kidsbike'
+      parms[:bike_type] = 'детский'
+    end     
     parms[:frame_color] = parms[:frame_color].split(', ') if parms[:frame_color]
     @kidsbike = Kidsbike.new(parms)
     @kidsbike.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'kidsbike').first_or_create.id    

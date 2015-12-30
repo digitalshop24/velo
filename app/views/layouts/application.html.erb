@@ -22,6 +22,12 @@
             <%= link_to t("#{category[0].to_s}_plural"), "/admin/manufacturers/category/#{category[0]}" %>
           </li>
         <% end %>
+        <li>
+          <%= link_to 'Категории', sportgoods_categories_path %>
+        </li>
+        <li>
+          <%= link_to 'Подкатегории', sportgoods_subcategories_path %>
+        </li>
         <% if can? :manage, User %>
           <li>
             <%= link_to 'Пользователи', users_path %>

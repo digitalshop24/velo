@@ -1,0 +1,13 @@
+ru:
+  activerecord:
+    attributes:
+      sportgood:
+        hit: "Хит продаж"
+        display: "Отображать"
+        manufacturer: "Производитель"
+        name: "Название"
+        price: "Цена"
+        image: "Превью"
+        description: "Описание"
+        sportgoods_category_name: "Категория"
+        sportgoods_subcategory_name: "Подкатегория"

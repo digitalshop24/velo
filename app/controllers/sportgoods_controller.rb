@@ -1,6 +1,7 @@
 class SportgoodsController < ApplicationController
   load_and_authorize_resource
   before_action :set_sportgood, only: [:show, :edit, :update, :destroy]
+  before_action :set_categories, only: [:new, :edit]
 
   # GET /sportgoods
   # GET /sportgoods.json
@@ -70,6 +71,14 @@ class SportgoodsController < ApplicationController
     end
   end
 
+  def update_categories
+    @sportgoods_subcategories = SportgoodsSubcategory.where("sportgoods_category_id = ?", params[:category_id])
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
+  end
+
   # DELETE /sportgoods/1
   # DELETE /sportgoods/1.json
   def destroy
@@ -81,6 +90,10 @@ class SportgoodsController < ApplicationController
   end
 
   private
+  def set_categories
+    @sportgoods_categories = SportgoodsCategory.all
+    @sportgoods_subcategories = []
+  end
   # Use callbacks to share common setup or constraints between actions.
   def set_sportgood
     @sportgood = Sportgood.find(params[:id])

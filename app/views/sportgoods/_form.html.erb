@@ -11,15 +11,15 @@
   <% end %>
   <div class="field">
     <%= f.label :manufacturer %><br>
-    <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'sportgood'), :id, :name, :prompt => true %>
+    <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'sportgood'), :id, :name, prompt: true %>
   </div>
   <div class="field">
     <%= f.label :sportgoods_category %><br>
-    <%= f.collection_select :sportgoods_category_id, SportgoodsCategory.all, :id, :name, :prompt => true %>
+    <%= f.collection_select :sportgoods_category_id, @sportgoods_categories, :id, :name, prompt: true %>
   </div>
   <div class="field">
     <%= f.label :sportgoods_subcategory %><br>
-    <%= f.collection_select :sportgoods_subcategory_id, SportgoodsSubcategory.all, :id, :name, :prompt => true %>
+    <%= f.collection_select :sportgoods_subcategory_id, @sportgoods_subcategories, :id, :name, prompt: true %>
   </div>
   <div class="field">
     <%= f.label :name %><br>

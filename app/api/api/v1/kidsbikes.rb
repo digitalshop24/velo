@@ -8,13 +8,7 @@ module API
       expose :name
       expose :price
       expose :image
-      expose :bike_type do |kidsbike|
-        if (kidsbike.wheels_number == 3)
-          "трайк"
-        else
-          "детский"
-        end
-      end
+      expose :bike_type
     end
     class Kidsbike < ProductEntity
       expose :id
@@ -102,11 +96,7 @@ module API
         end
         desc "Return all kidsbikes"
         get do
-          offset = (params[:page] - 1) * params[:number] if params[:number] && params[:page]
-          limit = params[:number]
-          present Kidsbike.where(display: true).page(params[:page]).per(params[:per_page]).preload(:manufacturer, gallery: [:images]), with: API::Entities::KidsbikePreview
-          # present Kidsbike.preload(:manufacturer, gallery: [:images]).where(display: true).limit(limit).offset(offset), with: API::Entities::KidsbikePreview
-          # present Kidsbike.preload(:manufacturer, gallery: [:images]).limit(300), with: API::Entities::KidsbikePreview
+          present Kidsbike.kidsbikes.where(display: true).preload(:manufacturer, gallery: [:images]).paginate(page: params[:page], per_page: params[:per_page]), with: API::Entities::KidsbikePreview
         end
         desc "Return kidsbike with id"
         get "/:id" do

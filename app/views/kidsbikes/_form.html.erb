@@ -15,7 +15,7 @@
   </div>
   <div class="field">
     <%= f.label :manufacturer %><br>
-    <% if params[:category] == 'trike' %>
+    <% if @kidsbike.bike_type == 'trike' || params[:category] == 'trike' %>
       <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'trike'), :id, :name, :prompt => true %>
     <% else %>
       <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'kidsbike'), :id, :name, :prompt => true %>

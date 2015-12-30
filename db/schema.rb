@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229093623) do
+ActiveRecord::Schema.define(version: 20151229134926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -269,6 +269,7 @@ ActiveRecord::Schema.define(version: 20151229093623) do
     t.string   "wheels_material"
     t.boolean  "sloping_backrest"
     t.boolean  "hit"
+    t.string   "bike_type"
   end
 
   add_index "kidsbikes", ["manufacturer_id"], name: "index_kidsbikes_on_manufacturer_id", using: :btree
