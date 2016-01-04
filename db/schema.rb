@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151229134926) do
+ActiveRecord::Schema.define(version: 20160104090258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -390,8 +390,12 @@ ActiveRecord::Schema.define(version: 20151229134926) do
 
   create_table "sportgoods_categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "sportgoods_subcategories", force: :cascade do |t|
@@ -399,6 +403,10 @@ ActiveRecord::Schema.define(version: 20151229134926) do
     t.integer  "sportgoods_category_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "tubings", force: :cascade do |t|

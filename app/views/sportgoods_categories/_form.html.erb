@@ -2,19 +2,25 @@
   <% if @sportgoods_category.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@sportgoods_category.errors.count, "error") %> prohibited this sportgoods_category from being saved:</h2>
-
       <ul>
-      <% @sportgoods_category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @sportgoods_category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image, type: :file, accept: 'image/png,image/gif,image/jpeg' %>
+    <% if @sportgoods_category.image_file_name %>
+      <%= image_tag @sportgoods_category.image.url(:thumb) %>
+    <% end %>
+  </div>
+  <br>
   <div class="actions">
     <%= f.submit 'Сохранить', class: 'btn btn-primary' %>
   </div>

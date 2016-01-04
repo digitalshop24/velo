@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Все категории спорттоваров</h1>
-
+<h1>Все категории и подкатегории спорттоваров</h1>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -9,7 +7,6 @@
       <th colspan="2"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @sportgoods_categories.each do |sportgoods_category| %>
       <tr>
@@ -17,10 +14,16 @@
         <td><%= link_to 'Редактировать', edit_sportgoods_category_path(sportgoods_category) %></td>
         <td><%= link_to 'Удалить', sportgoods_category, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
       </tr>
+      <% sportgoods_category.sportgoods_subcategories.each do |sportgoods_subcategory| %>
+      <tr>
+        <td class="subcategory"><%= sportgoods_subcategory.name %></td>
+        <td><%= link_to 'Редактировать', edit_sportgoods_subcategory_path(sportgoods_subcategory) %></td>
+        <td><%= link_to 'Удалить', sportgoods_subcategory, method: :delete, data: { confirm: 'Вы уверены?' } %></td>
+      </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'Новая категория', new_sportgoods_category_path %>
+<%= link_to 'Новая категория', new_sportgoods_category_path, class: 'btn btn-primary' %>
+<%= link_to 'Новая подкатегория', new_sportgoods_subcategory_path, class: 'btn btn-primary' %>

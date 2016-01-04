@@ -3,10 +3,16 @@ module API
     class SportgoodsSubcategory < Grape::Entity
       expose :id
       expose :name
+      expose :image do |subcategory|
+        subcategory.image.url(:thumb)
+      end
     end
     class SportgoodsCategory < Grape::Entity
       expose :id
       expose :name
+      expose :image do |category|
+        category.image.url(:thumb)
+      end
       expose :sportgoods_subcategories, using: API::Entities::SportgoodsSubcategory
     end
   end

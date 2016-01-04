@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
-<h1><%= @sportgoods_category.name %><h1>
+<h1><%= @sportgoods_category.name %></h1>
 <p>
   <strong>Название:</strong>
   <%= @sportgoods_category.name %>
 </p>
-
+<p>
+  <strong>Изображение:</strong>
+  <% if @sportgoods_category.image_file_name %>
+    <%= image_tag @sportgoods_category.image.url(:thumb) %>
+  <% end %>
+</p>
 <%= link_to 'Редактировать', edit_sportgoods_category_path(@sportgoods_category) %> |
-<%= link_to 'Удалить', sportgoods_categories_path %>
+    <%= link_to 'Удалить', sportgoods_categories_path %>

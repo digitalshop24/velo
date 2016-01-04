@@ -13,3 +13,10 @@ ru:
         sportgoods_category: "Категория"
         sportgoods_subcategory_name: "Подкатегория"
         sportgoods_subcategory: "Подкатегория"
+      sportgoods_category:
+        name: Название категории
+        image: Изображение
+      sportgoods_subcategory:
+        sportgoods_category: Категория
+        name: Название подкатегории
+        image: Изображение
