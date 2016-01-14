@@ -7,7 +7,7 @@ module API
       end
       expose :name
       expose :price do |bike|
-        price ? price : 0
+        bike.price ? bike.price : 0
       end
       expose :bike_class
       expose :bike_type
