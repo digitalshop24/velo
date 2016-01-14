@@ -30,6 +30,7 @@ module API
       expose :name
       expose :price
       expose :image
+      expose :description
       expose :similar, using: API::Entities::SportgoodPreview do |sportgood|
         sportgood.similar()
       end
