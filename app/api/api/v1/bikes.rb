@@ -6,7 +6,9 @@ module API
         bike.manufacturer.name
       end
       expose :name
-      expose :price
+      expose :price do |bike|
+        price ? price : 0
+      end
       expose :bike_class
       expose :bike_type
       expose :frame_type
@@ -22,11 +24,8 @@ module API
         bike.image.url
       end
 
-      expose :price do |bike|
-        price ? price : 0
-      end
-
       with_options(format_with: :to_s_ru) do
+        expose :price
         expose :description
         expose :year
         expose :bike_class
