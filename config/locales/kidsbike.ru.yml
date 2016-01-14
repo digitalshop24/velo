@@ -2,6 +2,7 @@ ru:
   activerecord:
     attributes:
       kidsbike:
+        display: "Отображать"
         hit: "Хит продаж"
         name: "Название"
         price: "Цена"

@@ -10,6 +10,10 @@
     </div>
   <% end %>
   <div class="field">
+    <%= f.label :display %><br>
+    <%= f.check_box :display %>
+  </div>
+  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
@@ -202,8 +206,8 @@
     <%= f.check_box :pomp %>
   </div>
   <div class="field">
-      <%= f.label :hit %><br>
-      <%= f.check_box :hit %>
+    <%= f.label :hit %><br>
+    <%= f.check_box :hit %>
   </div>
   <% @product = @kidsbike %>
   <%= render 'layouts/gallery_edit' %>
