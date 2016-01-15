@@ -6,7 +6,9 @@ module API
         kidsbike.manufacturer.name
       end
       expose :name
-      expose :price
+      expose :price do |obj|
+        obj.price_rub
+      end
       expose :image
       expose :bike_type
     end
@@ -18,7 +20,9 @@ module API
       with_options(format_with: :to_s_ru) do
         expose :name
         expose :image
-        expose :price
+        expose :price do |obj|
+          obj.price_rub
+        end
         expose :description
 
         expose :recommended_age
@@ -88,7 +92,7 @@ module API
       format :json
       content_type :json, "application/json;charset=UTF-8"
       rescue_from :all
-      
+
       resource :kidsbikes do
         params do
           optional :page, type: Integer, desc: "Page"

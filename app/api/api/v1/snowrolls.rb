@@ -6,7 +6,9 @@ module API
         snowroll.manufacturer.name
       end
       expose :name
-      expose :price
+      expose :price do |obj|
+        obj.price_rub
+      end
       expose :image
     end
     class Snowroll < ProductEntity
@@ -17,7 +19,9 @@ module API
       with_options(format_with: :to_s_ru) do
         expose :name
         expose :image
-        expose :price
+        expose :price do |obj|
+          obj.price_rub
+        end
         expose :description
 
         expose :seats_number

@@ -7,7 +7,7 @@ module API
       end
       expose :name
       expose :price do |bike|
-        bike.price ? bike.price : 0
+        bike.price ? bike.price_rub : 0
       end
       expose :bike_class
       expose :bike_type
@@ -25,7 +25,9 @@ module API
       end
 
       with_options(format_with: :to_s_ru) do
-        expose :price
+        expose :price do |obj|
+          obj.price_rub
+        end
         expose :description
         expose :year
         expose :bike_class

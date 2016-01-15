@@ -12,7 +12,9 @@ module API
       end
 
       expose :name
-      expose :price
+      expose :price do |obj|
+        obj.price_rub
+      end
       expose :image
     end
   end

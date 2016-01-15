@@ -5,4 +5,7 @@ module Product
   def similar(*features)
     self.class.where(hit: true).order("RANDOM()").limit(4)
   end
+  def price_rub
+    price * Variable.rate.value if price
+  end
 end

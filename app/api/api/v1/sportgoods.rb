@@ -12,10 +12,12 @@ module API
         sportgood.manufacturer.name
       end
       expose :name
-      expose :price
+      expose :price do |obj|
+        obj.price_rub
+      end
       expose :image
     end
-    
+
     class Sportgood < ProductEntity
       expose :id
       expose :category_id do |sportgood|
@@ -28,7 +30,9 @@ module API
         sportgood.manufacturer.name
       end
       expose :name
-      expose :price
+      expose :price do |obj|
+        obj.price_rub
+      end
       expose :image
       expose :description
       expose :similar, using: API::Entities::SportgoodPreview do |sportgood|

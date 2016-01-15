@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   scope path: '/admin' do
     resources :sportgoods do
-        get 'update_categories', as: 'update_categories', on: :collection
+      get 'update_categories', as: 'update_categories', on: :collection
     end
     resources :sportgoods_categories
     resources :sportgoods_subcategories
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :manufacturers
     resources :electriccars
     resources :skis
+    resources :variables, only: [:edit, :update]
     scope path: '/manage' do
       resources :users
     end
