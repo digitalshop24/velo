@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115155006) do
+ActiveRecord::Schema.define(version: 20160120111241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20160115155006) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "price"
+    t.float    "price"
     t.integer  "year"
     t.string   "bike_class"
     t.string   "bike_type"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20160115155006) do
   create_table "electriccars", force: :cascade do |t|
     t.integer  "manufacturer_id"
     t.string   "name"
-    t.integer  "price"
+    t.float    "price"
     t.string   "age"
     t.boolean  "remote_control"
     t.integer  "max_speed"
@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 20160115155006) do
     t.boolean  "handles"
     t.integer  "length"
     t.boolean  "display",            default: true
-    t.integer  "price"
+    t.float    "price"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.boolean  "hit"
@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(version: 20160115155006) do
   create_table "kickscooters", force: :cascade do |t|
     t.integer  "manufacturer_id"
     t.string   "name"
-    t.integer  "price"
+    t.float    "price"
     t.text     "description"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -220,7 +220,7 @@ ActiveRecord::Schema.define(version: 20160115155006) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "price"
+    t.float    "price"
     t.string   "recommended_age"
     t.string   "use"
     t.float    "weight"
@@ -284,7 +284,7 @@ ActiveRecord::Schema.define(version: 20160115155006) do
   create_table "skates", force: :cascade do |t|
     t.integer  "manufacturer_id"
     t.string   "name"
-    t.integer  "price"
+    t.float    "price"
     t.text     "description"
     t.boolean  "display"
     t.string   "image_file_name"
@@ -301,7 +301,7 @@ ActiveRecord::Schema.define(version: 20160115155006) do
   create_table "skis", force: :cascade do |t|
     t.integer  "manufacturer_id"
     t.string   "name"
-    t.integer  "price"
+    t.float    "price"
     t.boolean  "poles"
     t.boolean  "grid"
     t.integer  "size"
@@ -325,7 +325,7 @@ ActiveRecord::Schema.define(version: 20160115155006) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.integer  "price"
+    t.float    "price"
     t.text     "description"
     t.integer  "runners_width"
     t.boolean  "seat_belt"
@@ -357,7 +357,7 @@ ActiveRecord::Schema.define(version: 20160115155006) do
     t.datetime "image_updated_at"
     t.text     "description"
     t.boolean  "display",            default: true
-    t.integer  "price"
+    t.float    "price"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "seats_number"
@@ -372,7 +372,7 @@ ActiveRecord::Schema.define(version: 20160115155006) do
     t.integer  "sportgoods_subcategory_id"
     t.integer  "manufacturer_id"
     t.string   "name"
-    t.integer  "price"
+    t.float    "price"
     t.text     "description"
     t.boolean  "display"
     t.string   "image_file_name"
@@ -419,7 +419,7 @@ ActiveRecord::Schema.define(version: 20160115155006) do
     t.boolean  "tow_rope"
     t.text     "description"
     t.boolean  "display",            default: true
-    t.integer  "price"
+    t.float    "price"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

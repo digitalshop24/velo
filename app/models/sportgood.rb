@@ -16,9 +16,9 @@ class Sportgood < ActiveRecord::Base
   end
 
   def sportgoods_category_name
-    self.sportgoods_category.name
+    sportgoods_category.name if sportgoods_category
   end
   def sportgoods_subcategory_name
-    self.sportgoods_subcategory.name
+    sportgoods_subcategory.name if sportgoods_subcategory
   end
 end

@@ -16,8 +16,8 @@
       <tr>
         <td><%= link_to sportgood.manufacturer.name, manufacturer_path(sportgood.manufacturer) %></td>
         <td><%= link_to sportgood.name, sportgood_path(sportgood) %></td>
-        <td><%= sportgood.sportgoods_category.name %></td>
-        <td><%= sportgood.sportgoods_subcategory.name %></td>
+        <td><%= sportgood.sportgoods_category_name %></td>
+        <td><%= sportgood.sportgoods_subcategory_name %></td>
         <td>
           <%= form_for(sportgood, url: "#{sportgood_path(sportgood)}.json", remote: true) do |f| %>
             <%= f.check_box :display, id: "sportgood_display_#{sportgood.id}", class: 'display_checkbox' %>

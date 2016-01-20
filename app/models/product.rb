@@ -6,6 +6,6 @@ module Product
     self.class.where(hit: true).order("RANDOM()").limit(4)
   end
   def price_rub
-    price * Variable.rate.value if price
+    (price * Variable.rate.value).to_i if price
   end
 end
