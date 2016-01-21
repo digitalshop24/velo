@@ -1,0 +1,219 @@
+<%= form_for(@trike, :html => { :multipart => true }) do |f| %>
+  <% if @trike.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trike.errors.count, "error") %> prohibited this trike from being saved:</h2>
+      <ul>
+        <% @trike.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :display %><br>
+    <%= f.check_box :display %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :manufacturer %><br>
+    <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'trike'), :id, :name, :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.number_field :price, step: 'any' %>
+  </div>
+  <div class="field">
+    <%= f.label :kid_height %><br>
+    <%= f.number_field :kid_height %>
+  </div>
+  <div class="field">
+    <%= f.label :wheels_material %><br>
+    <%= f.text_field :wheels_material %>
+  </div>
+  <div class="field">
+    <%= f.label :sloping_backrest %><br>
+    <%= f.check_box :sloping_backrest %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :recommended_age %><br>
+    <%= f.text_field :recommended_age %>
+  </div>
+  <div class="field">
+    <%= f.label :use %><br>
+    <%= f.collection_select :use, Kidsbike::BIKE_USES, :to_s, :to_s, :prompt => true %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :seat %><br>
+    <%= f.text_field :seat %>
+  </div>
+  <div class="field">
+    <%= f.label :seat_belts %><br>
+    <%= f.check_box :seat_belts %>
+  </div>
+  <div class="field">
+    <%= f.label :handle %><br>
+    <%= f.check_box :handle %>
+  </div>
+  <div class="field">
+    <%= f.label :control_handle %><br>
+    <%= f.check_box :control_handle %>
+  </div>
+  <div class="field">
+    <%= f.label :safety_rim %><br>
+    <%= f.check_box :safety_rim %>
+  </div>
+  <div class="field">
+    <%= f.label :visor %><br>
+    <%= f.check_box :visor %>
+  </div>
+  <div class="field">
+    <%= f.label :music_unit %><br>
+    <%= f.check_box :music_unit %>
+  </div>
+  <div class="field">
+    <%= f.label :frame_material %><br>
+    <%= f.text_field :frame_material %>
+  </div>
+  <div class="field">
+    <%= f.label :folding_frame %><br>
+    <%= f.check_box :folding_frame %>
+  </div>
+  <div class="field">
+    <%= f.label :frame_color %><br>
+    <%= f.text_field :frame_color, value: @trike.frame_color.join(', ') %>
+  </div>
+  <div class="field">
+    <%= f.label :fork %><br>
+    <%= f.text_field :fork %>
+  </div>
+  <div class="field">
+    <%= f.label :fork_type %><br>
+    <%= f.text_field :fork_type %>
+  </div>
+  <div class="field">
+    <%= f.label :speeds_number %><br>
+    <%= f.number_field :speeds_number %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_derailleur %><br>
+    <%= f.text_field :rear_derailleur %>
+  </div>
+  <div class="field">
+    <%= f.label :shifters %><br>
+    <%= f.text_field :shifters %>
+  </div>
+  <div class="field">
+    <%= f.label :shifters_type %><br>
+    <%= f.text_field :shifters_type %>
+  </div>
+  <div class="field">
+    <%= f.label :front_brake_type %><br>
+    <%= f.text_field :front_brake_type %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_brake_type %><br>
+    <%= f.text_field :rear_brake_type %>
+  </div>
+  <div class="field">
+    <%= f.label :wheels_number %><br>
+    <%= f.number_field :wheels_number %>
+  </div>
+  <div class="field">
+    <%= f.label :wheels_diameter %><br>
+    <%= f.text_field :wheels_diameter %>
+  </div>
+  <div class="field">
+    <%= f.label :front_wheel_diameter %><br>
+    <%= f.text_field :front_wheel_diameter %>
+  </div>
+  <div class="field">
+    <%= f.label :attached_wheels %><br>
+    <%= f.check_box :attached_wheels %>
+  </div>
+  <div class="field">
+    <%= f.label :wheels_type %><br>
+    <%= f.text_field :wheels_type %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_wheels_stopper %><br>
+    <%= f.check_box :rear_wheels_stopper %>
+  </div>
+  <div class="field">
+    <%= f.label :raincoat %><br>
+    <%= f.check_box :raincoat %>
+  </div>
+  <div class="field">
+    <%= f.label :front_fender %><br>
+    <%= f.check_box :front_fender %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_fender %><br>
+    <%= f.check_box :rear_fender %>
+  </div>
+  <div class="field">
+    <%= f.label :chain_protection %><br>
+    <%= f.check_box :chain_protection %>
+  </div>
+  <div class="field">
+    <%= f.label :luggage_rack %><br>
+    <%= f.check_box :luggage_rack %>
+  </div>
+  <div class="field">
+    <%= f.label :rearview_mirror %><br>
+    <%= f.check_box :rearview_mirror %>
+  </div>
+  <div class="field">
+    <%= f.label :horn %><br>
+    <%= f.check_box :horn %>
+  </div>
+  <div class="field">
+    <%= f.label :basket %><br>
+    <%= f.check_box :basket %>
+  </div>
+  <div class="field">
+    <%= f.label :bag %><br>
+    <%= f.check_box :bag %>
+  </div>
+  <div class="field">
+    <%= f.label :flag %><br>
+    <%= f.check_box :flag %>
+  </div>
+  <div class="field">
+    <%= f.label :footboard %><br>
+    <%= f.check_box :footboard %>
+  </div>
+  <div class="field">
+    <%= f.label :light %><br>
+    <%= f.check_box :light %>
+  </div>
+  <div class="field">
+    <%= f.label :pomp %><br>
+    <%= f.check_box :pomp %>
+  </div>
+  <div class="field">
+    <%= f.label :hit %><br>
+    <%= f.check_box :hit %>
+  </div>
+  <% @product = @trike %>
+  <%= render 'layouts/gallery_edit' %>
+</p>
+<%= f.fields_for :gallery do |g| %>
+  <div class="control-group">
+    <%= file_field_tag "images[]", type: :file, multiple: true, accept: 'image/png,image/gif,image/jpeg' %>
+  </div>
+<% end %>
+<div class="actions">
+  <%= f.submit 'Сохранить', class: "btn btn-primary" %>
+</div>
+<% end %>

@@ -13,11 +13,11 @@ module API
         end
         desc "Return all trikes"
         get do
-          present Kidsbike.trikes.where(display: true).preload(:manufacturer, gallery: [:images]).paginate(page: params[:page], per_page: params[:per_page]), with: API::Entities::KidsbikePreview
+          present Trike.where(display: true).preload(:manufacturer, gallery: [:images]).paginate(page: params[:page], per_page: params[:per_page]), with: API::Entities::KidsbikePreview
         end
         desc "Return trike with id"
         get "/:id" do
-          present Kidsbike.find(params[:id]), with: API::Entities::Kidsbike
+          present Trike.find(params[:id]), with: API::Entities::Kidsbike
         end
       end
     end

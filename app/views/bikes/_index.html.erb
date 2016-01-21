@@ -16,7 +16,7 @@
   <tbody>
     <% @bikes.each do |bike| %>
       <tr>
-        <td><%= link_to bike.manufacturer.name, manufacturer_path(bike.manufacturer) %></td>
+        <td><%= link_to bike.manufacturer.name, manufacturer_path(bike.manufacturer) if bike.manufacturer %></td>
         <td><%= link_to bike.name, bike_path(bike) %></td>
         <td><%= bike.price %></td>
         <td><%= bike.year %></td>

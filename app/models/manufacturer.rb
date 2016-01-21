@@ -5,6 +5,7 @@ class Manufacturer < ActiveRecord::Base
                 electriccar: 'Электромобиль', ski: 'Лыжи', skate: 'Коньки', sportgood: 'Спорттовары'}
   has_many :bikes, dependent: :destroy
   has_many :kidsbikes, dependent: :destroy
+  has_many :trikes, dependent: :destroy
   has_many :kickscooters, dependent: :destroy
   has_many :icesleds, dependent: :destroy
   has_many :sleds, dependent: :destroy
@@ -14,6 +15,4 @@ class Manufacturer < ActiveRecord::Base
   has_many :skis, dependent: :destroy
   has_many :skates, dependent: :destroy
   has_many :sportgoods, dependent: :destroy
-
-  alias trikes kidsbikes
 end

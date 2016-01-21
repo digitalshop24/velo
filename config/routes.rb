@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :kickscooters
     devise_for :users
     resources :kidsbikes
+    resources :trikes
     resources :bikes
     resources :manufacturers
     resources :electriccars

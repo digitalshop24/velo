@@ -134,7 +134,13 @@ namespace :db do
                ]
 
     when 'kidsbike'
-      item = Kidsbike.new
+      if specifications["Количество колёс"].to_i == 3
+        item = Trike.new
+        category = 'trike'
+      else
+        item = Kidsbike.new
+        category = 'kidsbike'
+      end
       pairs = [[:recommended_age, "Рекомендуемый возраст"],
                [:use, "Назначение"],
                [:weight, "Вес"],

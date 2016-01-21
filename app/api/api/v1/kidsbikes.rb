@@ -10,7 +10,6 @@ module API
         obj.price_rub
       end
       expose :image
-      expose :bike_type
     end
     class Kidsbike < ProductEntity
       expose :id
