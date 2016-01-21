@@ -3,7 +3,12 @@ class TrikesController < ApplicationController
   before_action :set_trike, only: [:show, :edit, :update, :destroy]
 
   def index
+    if params[:after]
+      after = Date.parse(params[:after])
+      @trikes = Trike.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
+    else
       @trikes = Trike.paginate(page: params[:page])
+    end
   end
 
   def show
@@ -20,7 +25,7 @@ class TrikesController < ApplicationController
     parms = trike_params
     parms[:frame_color] = parms[:frame_color].split(' ') if parms[:frame_color]
     @trike = Trike.new(parms)
-    @trike.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'trike').first_or_create.id    
+    @trike.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'trike').first_or_create.id
     respond_to do |format|
       if @trike.save
         if params[:images]

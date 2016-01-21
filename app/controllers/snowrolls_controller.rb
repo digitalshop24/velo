@@ -5,7 +5,12 @@ class SnowrollsController < ApplicationController
   # GET /snowrolls
   # GET /snowrolls.json
   def index
-    @snowrolls = Snowroll.preload(:manufacturer).paginate(:page => params[:page])
+    if params[:after]
+      after = Date.parse(params[:after])
+      @snowrolls = Snowroll.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
+    else
+      @snowrolls = Snowroll.preload(:manufacturer).paginate(:page => params[:page])
+    end
   end
 
   # GET /snowrolls/1
@@ -28,7 +33,7 @@ class SnowrollsController < ApplicationController
     parms = snowroll_params
     parms[:frame_color] = parms[:frame_color].split(', ') if parms[:frame_color]
     @snowroll = Snowroll.new(parms)
-    @snowroll.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'snowroll').first_or_create.id     
+    @snowroll.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'snowroll').first_or_create.id
     respond_to do |format|
       if @snowroll.save
         if params[:images]
@@ -85,13 +90,13 @@ class SnowrollsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_snowroll
-      @snowroll = Snowroll.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_snowroll
+    @snowroll = Snowroll.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def snowroll_params
-      params.require(:snowroll).permit(:price, :manufacturer_id, :name, :image, :description, :display, :seats_number, :carrying, :hit)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def snowroll_params
+    params.require(:snowroll).permit(:price, :manufacturer_id, :name, :image, :description, :display, :seats_number, :carrying, :hit)
+  end
 end

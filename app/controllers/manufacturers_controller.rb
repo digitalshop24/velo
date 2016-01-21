@@ -7,9 +7,9 @@ class ManufacturersController < ApplicationController
   def index
     @category = params[:category]
     if @category
-      @manufacturers = Manufacturer.where(category: @category).order(:name).paginate(:page => params[:page])
+      @manufacturers = Manufacturer.where(category: @category).order(:name).paginate(page: params[:page])
     else
-      @manufacturers = Manufacturer.order(:name).paginate(:page => params[:page])
+      @manufacturers = Manufacturer.order(:name).paginate(page: params[:page])
     end
   end
 

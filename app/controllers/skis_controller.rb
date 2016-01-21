@@ -5,7 +5,12 @@ class SkisController < ApplicationController
   # GET /skis
   # GET /skis.json
   def index
-    @skis = Ski.preload(:manufacturer).paginate(:page => params[:page])
+    if params[:after]
+      after = Date.parse(params[:after])
+      @skis = Ski.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
+    else
+      @skis = Ski.preload(:manufacturer).paginate(:page => params[:page])
+    end
   end
 
   # GET /skis/1
@@ -24,11 +29,11 @@ class SkisController < ApplicationController
 
   # POST /skis
   # POST /skis.json
-def create
+  def create
     parms = ski_params
     parms[:color] = parms[:color].split(', ') if parms[:color]
     @ski = Ski.new(parms)
-    @ski.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'ski').first_or_create.id     
+    @ski.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'ski').first_or_create.id
     respond_to do |format|
       if @ski.save
         if params[:images]
@@ -85,13 +90,13 @@ def create
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ski
-      @ski = Ski.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ski
+    @ski = Ski.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ski_params
-      params.require(:ski).permit(:manufacturer_id, :name, :price, :poles, :grid, :size, :description, :display, :image, :hit)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ski_params
+    params.require(:ski).permit(:manufacturer_id, :name, :price, :poles, :grid, :size, :description, :display, :image, :hit)
+  end
 end

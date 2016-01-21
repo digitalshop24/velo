@@ -5,7 +5,12 @@ class ElectriccarsController < ApplicationController
   # GET /electriccars
   # GET /electriccars.json
   def index
-    @electriccars = Electriccar.preload(:manufacturer).paginate(:page => params[:page])
+    if params[:after]
+      after = Date.parse(params[:after])
+      @electriccars = Electriccar.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
+    else
+      @electriccars = Electriccar.preload(:manufacturer).paginate(:page => params[:page])
+    end
   end
 
   # GET /electriccars/1
@@ -25,8 +30,8 @@ class ElectriccarsController < ApplicationController
   # POST /electriccars
   # POST /electriccars.json
   def create
-    @electriccar = Electriccar.new(electriccar_params)  
-    @electriccar.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'electriccar').first_or_create.id  
+    @electriccar = Electriccar.new(electriccar_params)
+    @electriccar.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'electriccar').first_or_create.id
     respond_to do |format|
       if @electriccar.save
         if params[:images]
@@ -81,13 +86,13 @@ class ElectriccarsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_electriccar
-      @electriccar = Electriccar.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_electriccar
+    @electriccar = Electriccar.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def electriccar_params
-      params.require(:electriccar).permit(:manufacturer_id, :name, :price, :age, :remote_control, :max_speed, :battery, :engine, :work_time, :charging_time, :max_weight, :weight, :sizes, :light, :seat_belt, :rearview_mirror, :description, :image, :display, :hit)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def electriccar_params
+    params.require(:electriccar).permit(:manufacturer_id, :name, :price, :age, :remote_control, :max_speed, :battery, :engine, :work_time, :charging_time, :max_weight, :weight, :sizes, :light, :seat_belt, :rearview_mirror, :description, :image, :display, :hit)
+  end
 end

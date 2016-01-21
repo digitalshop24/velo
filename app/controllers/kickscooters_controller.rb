@@ -5,7 +5,12 @@ class KickscootersController < ApplicationController
   # GET /kickscooters
   # GET /kickscooters.json
   def index
-    @kickscooters = Kickscooter.preload(:manufacturer).paginate(:page => params[:page])
+    if params[:after]
+      after = Date.parse(params[:after])
+      @kickscooters = Kickscooter.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
+    else
+      @kickscooters = Kickscooter.preload(:manufacturer).paginate(:page => params[:page])
+    end
   end
 
   # GET /kickscooters/1
@@ -26,7 +31,7 @@ class KickscootersController < ApplicationController
   # POST /kickscooters.json
   def create
     @kickscooter = Kickscooter.new(kickscooter_params)
-    @kickscooter.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'kickscooter').first_or_create.id    
+    @kickscooter.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'kickscooter').first_or_create.id
     respond_to do |format|
       if @kickscooter.save
         if params[:images]
@@ -81,13 +86,13 @@ class KickscootersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_kickscooter
-      @kickscooter = Kickscooter.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_kickscooter
+    @kickscooter = Kickscooter.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def kickscooter_params
-      params.require(:kickscooter).permit(:kid_height, :wheels_material, :sloping_backrest, :manufacturer_id, :name, :price, :description, :image, :use, :electric_drive, :max_weight, :wheels_number, :wheels_diameter, :wheels_thickness, :wheels_material, :wheels_hardness, :inflatable_wheels, :bearings, :platform_material, :folding, :seat, :amortization, :front_break, :rear_break, :tilt_handle_control, :wheels_luminodiodes, :min_handlebar_height, :max_handlebar_height, :platform_length, :platform_width, :length, :weight, :horn, :basket, :footboard, :belt, :display, :hit)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def kickscooter_params
+    params.require(:kickscooter).permit(:kid_height, :wheels_material, :sloping_backrest, :manufacturer_id, :name, :price, :description, :image, :use, :electric_drive, :max_weight, :wheels_number, :wheels_diameter, :wheels_thickness, :wheels_material, :wheels_hardness, :inflatable_wheels, :bearings, :platform_material, :folding, :seat, :amortization, :front_break, :rear_break, :tilt_handle_control, :wheels_luminodiodes, :min_handlebar_height, :max_handlebar_height, :platform_length, :platform_width, :length, :weight, :horn, :basket, :footboard, :belt, :display, :hit)
+  end
 end

@@ -5,7 +5,12 @@ class TubingsController < ApplicationController
   # GET /tubings
   # GET /tubings.json
   def index
-    @tubings = Tubing.preload(:manufacturer).paginate(:page => params[:page])
+    if params[:after]
+      after = Date.parse(params[:after])
+      @tubings = Tubing.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
+    else
+      @tubings = Tubing.preload(:manufacturer).paginate(:page => params[:page])
+    end
   end
 
   # GET /tubings/1
@@ -26,7 +31,7 @@ class TubingsController < ApplicationController
   # POST /tubings.json
   def create
     @tubing = Tubing.new(tubing_params)
-    @tubing.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'tubing').first_or_create.id     
+    @tubing.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'tubing').first_or_create.id
     respond_to do |format|
       if @tubing.save
         if params[:images]
@@ -81,13 +86,13 @@ class TubingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tubing
-      @tubing = Tubing.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tubing
+    @tubing = Tubing.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def tubing_params
-      params.require(:tubing).permit(:price, :name, :manufacturer_id, :bottom_material, :top_material, :diameter, :handles_type, :tow_rope, :description, :display, :hit)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def tubing_params
+    params.require(:tubing).permit(:price, :name, :manufacturer_id, :bottom_material, :top_material, :diameter, :handles_type, :tow_rope, :description, :display, :hit)
+  end
 end

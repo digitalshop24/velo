@@ -5,7 +5,12 @@ class SledsController < ApplicationController
   # GET /sleds
   # GET /sleds.json
   def index
-    @sleds = Sled.preload(:manufacturer).paginate(:page => params[:page])
+    if params[:after]
+      after = Date.parse(params[:after])
+      @sleds = Sled.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
+    else
+      @sleds = Sled.preload(:manufacturer).paginate(:page => params[:page])
+    end
   end
 
   # GET /sleds/1
@@ -28,7 +33,7 @@ class SledsController < ApplicationController
     parms = sled_params
     parms[:color] = parms[:color].split(', ') if parms[:color]
     @sled = Sled.new(parms)
-    @sled.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'sled').first_or_create.id     
+    @sled.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'sled').first_or_create.id
     respond_to do |format|
       if @sled.save
         if params[:images]
@@ -85,13 +90,13 @@ class SledsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sled
-      @sled = Sled.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sled
+    @sled = Sled.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def sled_params
-      params.require(:sled).permit(:handle, :recommended_age, :price, :manufacturer_id, :name, :image, :description, :runners_width, :seat_belt, :seat_belt_type, :folding_visor, :folding_visor_type, :bag, :flicker, :backrest_adjustment, :color, :transport_wheel, :legs_case, :display, :hit)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def sled_params
+    params.require(:sled).permit(:handle, :recommended_age, :price, :manufacturer_id, :name, :image, :description, :runners_width, :seat_belt, :seat_belt_type, :folding_visor, :folding_visor_type, :bag, :flicker, :backrest_adjustment, :color, :transport_wheel, :legs_case, :display, :hit)
+  end
 end

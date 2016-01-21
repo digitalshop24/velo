@@ -6,7 +6,12 @@ class SportgoodsController < ApplicationController
   # GET /sportgoods
   # GET /sportgoods.json
   def index
-    @sportgoods = Sportgood.preload(:manufacturer, :sportgoods_category, :sportgoods_subcategory).paginate(:page => params[:page])
+    if params[:after]
+      after = Date.parse(params[:after])
+      @sportgoods = Sportgood.where('created_at > ?', after).preload(:manufacturer, :sportgoods_category, :sportgoods_subcategory).paginate(page: params[:page])
+    else
+      @sportgoods = Sportgood.preload(:manufacturer, :sportgoods_category, :sportgoods_subcategory).paginate(:page => params[:page])
+    end
   end
 
   # GET /sportgoods/1

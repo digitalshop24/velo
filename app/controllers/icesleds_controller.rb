@@ -5,7 +5,12 @@ class IcesledsController < ApplicationController
   # GET /icesleds
   # GET /icesleds.json
   def index
-    @icesleds = Icesled.preload(:manufacturer).order(:name).paginate(:page => params[:page])
+    if params[:after]
+      after = Date.parse(params[:after])
+      @icesleds = Icesled.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
+    else
+      @icesleds = Icesled.preload(:manufacturer).order(:name).paginate(:page => params[:page])
+    end
   end
 
   # GET /icesleds/1
@@ -26,7 +31,7 @@ class IcesledsController < ApplicationController
   # POST /icesleds.json
   def create
     @icesled = Icesled.new(icesled_params)
-    @icesled.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'icesled').first_or_create.id    
+    @icesled.manufacturer_id ||= Manufacturer.where(name: 'не указан', category: 'icesled').first_or_create.id
     respond_to do |format|
       if @icesled.save
         if params[:images]
