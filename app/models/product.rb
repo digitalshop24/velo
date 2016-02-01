@@ -12,6 +12,6 @@ module Product
     (old_price * Variable.rate.value).to_i if old_price
   end
   def approved_reviews
-    reviews.where(aprroved: true)
+    reviews.where(approved: true)
   end
 end
