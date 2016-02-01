@@ -13,7 +13,9 @@ end
 module API
   module Entities
     class ProductEntity < ProductPreviewEntity
-      expose :approved_reviews, using: API::Entities::Review
+      expose :reviews, using: API::Entities::Review do |obj|
+        obj.approved_reviews
+      end
     end
   end
 end
