@@ -2,6 +2,7 @@ class Kidsbike < ActiveRecord::Base
   include Product
   BIKE_USES = ["для мальчиков", "для девочек", "для мальчиков, для девочек"]
   belongs_to :manufacturer
+  has_many :reviews, as: :reviewable, dependent: :destroy
   has_one :gallery, as: :galleryable, dependent: :destroy
   has_attached_file :image,
     path: "public/system/images/:galleryable_path/:filename",

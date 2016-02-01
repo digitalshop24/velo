@@ -97,6 +97,6 @@ class SledsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def sled_params
-    params.require(:sled).permit(:handle, :recommended_age, :price, :manufacturer_id, :name, :image, :description, :runners_width, :seat_belt, :seat_belt_type, :folding_visor, :folding_visor_type, :bag, :flicker, :backrest_adjustment, :color, :transport_wheel, :legs_case, :display, :hit)
+    params.require(:sled).permit(:handle, :recommended_age, :price, :old_price, :manufacturer_id, :name, :image, :description, :runners_width, :seat_belt, :seat_belt_type, :folding_visor, :folding_visor_type, :bag, :flicker, :backrest_adjustment, :color, :transport_wheel, :legs_case, :display, :hit)
   end
 end

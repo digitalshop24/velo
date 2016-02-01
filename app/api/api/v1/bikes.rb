@@ -1,18 +1,21 @@
 module API
   module Entities
-    class BikePreview < ProductEntity
+    class BikePreview < ProductPreviewEntity
       expose :id
       expose :manufacturer do |bike|
         bike.manufacturer.name
       end
       expose :name
-      expose :price do |bike|
-        bike.price ? bike.price_rub : 0
-      end
       expose :bike_class
       expose :bike_type
       expose :frame_type
       expose :image
+      expose :price do |obj|
+        obj.price_rub ? obj.price_rub : 0
+      end
+      expose :old_price do |obj|
+        obj.old_price_rub ? obj.old_price_rub : 0
+      end
     end
     class Bike < ProductEntity
       expose :id
@@ -25,9 +28,7 @@ module API
       end
 
       with_options(format_with: :to_s_ru) do
-        expose :price do |obj|
-          obj.price_rub
-        end
+
         expose :description
         expose :year
         expose :bike_class
@@ -112,7 +113,7 @@ module API
       version 'v1'
       format :json
       content_type :json, "application/json;charset=UTF-8"
-      rescue_from :all
+      # rescue_from :all
 
       resource :bikes do
         params do

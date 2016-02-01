@@ -93,6 +93,6 @@ class ElectriccarsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def electriccar_params
-    params.require(:electriccar).permit(:manufacturer_id, :name, :price, :age, :remote_control, :max_speed, :battery, :engine, :work_time, :charging_time, :max_weight, :weight, :sizes, :light, :seat_belt, :rearview_mirror, :description, :image, :display, :hit)
+    params.require(:electriccar).permit(:manufacturer_id, :name, :price, :old_price, :age, :remote_control, :max_speed, :battery, :engine, :work_time, :charging_time, :max_weight, :weight, :sizes, :light, :seat_belt, :rearview_mirror, :description, :image, :display, :hit)
   end
 end

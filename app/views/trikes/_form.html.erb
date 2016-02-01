@@ -21,10 +21,7 @@
     <%= f.label :manufacturer %><br>
     <%= f.collection_select :manufacturer_id, Manufacturer.where(category: 'trike'), :id, :name, :prompt => true %>
   </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.number_field :price, step: 'any' %>
-  </div>
+<%= render partial: 'layouts/product_fields', locals: {f: f} %>
   <div class="field">
     <%= f.label :kid_height %><br>
     <%= f.number_field :kid_height %>

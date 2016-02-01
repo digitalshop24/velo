@@ -21,10 +21,7 @@
     <%= f.label :seats_number %><br>
     <%= f.collection_select :seats_number, Snowroll::SEATS_NUMBER, :to_s, :to_s, prompt: true %>
   </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.number_field :price, step: 'any' %>
-  </div>
+<%= render partial: 'layouts/product_fields', locals: {f: f} %>
   <div class="field">
     <%= f.label :carrying %><br>
     <%= f.number_field :carrying %>

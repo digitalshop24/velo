@@ -17,7 +17,7 @@ module API
         end
         desc "Return trike with id"
         get "/:id" do
-          present Trike.find(params[:id]), with: API::Entities::Kidsbike
+          present Trike.find(params[:id]), with: API::Entities::KidsbikePreview
         end
       end
     end

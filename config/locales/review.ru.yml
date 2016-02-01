@@ -1,0 +1,10 @@
+ru:
+  activerecord:
+    attributes:
+      review:
+        name: Имя
+        approved: Одобрен
+        content: Текст отзыва
+        mark: Оценка
+        reviewable_type: Тип товара
+        reviewable_id: Id товара

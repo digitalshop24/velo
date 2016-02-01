@@ -96,6 +96,6 @@ class SkatesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def skate_params
-    params.require(:skate).permit(:manufacturer_id, :name, :price, :description, :display, :image, :hit)
+    params.require(:skate).permit(:manufacturer_id, :name, :price, :old_price, :description, :display, :image, :hit)
   end
 end

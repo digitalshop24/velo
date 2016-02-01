@@ -1,14 +1,12 @@
 module API
   module Entities
-    class IcesledPreview < ProductEntity
+    class IcesledPreview < ProductPreviewEntity
       expose :id
       expose :manufacturer do |icesled|
         icesled.manufacturer.name
       end
       expose :name
-      expose :price do |obj|
-        obj.price_rub
-      end
+
       expose :image
     end
     class Icesled < ProductEntity
@@ -19,9 +17,7 @@ module API
       with_options(format_with: :to_s_ru) do
         expose :name
         expose :image
-        expose :price do |obj|
-          obj.price_rub
-        end
+
         expose :description
 
         expose :material

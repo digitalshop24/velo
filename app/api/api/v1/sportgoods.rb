@@ -1,6 +1,6 @@
 module API
   module Entities
-    class SportgoodPreview < ProductEntity
+    class SportgoodPreview < ProductPreviewEntity
       expose :id
       expose :category_id do |sportgood|
         sportgood.sportgoods_category_id
@@ -12,9 +12,7 @@ module API
         sportgood.manufacturer.name
       end
       expose :name
-      expose :price do |obj|
-        obj.price_rub
-      end
+
       expose :image
     end
 
@@ -30,9 +28,7 @@ module API
         sportgood.manufacturer.name
       end
       expose :name
-      expose :price do |obj|
-        obj.price_rub
-      end
+
       expose :image
       expose :description
       expose :similar, using: API::Entities::SportgoodPreview do |sportgood|

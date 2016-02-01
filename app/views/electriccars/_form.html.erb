@@ -17,10 +17,7 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.number_field :price, step: 'any' %>
-  </div>
+<%= render partial: 'layouts/product_fields', locals: {f: f} %>
   <div class="field">
     <%= f.label :age %><br>
     <%= f.text_field :age %>

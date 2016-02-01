@@ -4,6 +4,7 @@ class Sportgood < ActiveRecord::Base
   belongs_to :sportgoods_subcategory
   belongs_to :manufacturer
 
+  has_many :reviews, as: :reviewable, dependent: :destroy
   has_one :gallery, as: :galleryable, dependent: :destroy
   has_attached_file :image,
     path: "public/system/images/:galleryable_path/:filename",

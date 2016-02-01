@@ -97,6 +97,6 @@ class SnowrollsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def snowroll_params
-    params.require(:snowroll).permit(:price, :manufacturer_id, :name, :image, :description, :display, :seats_number, :carrying, :hit)
+    params.require(:snowroll).permit(:price, :old_price, :manufacturer_id, :name, :image, :description, :display, :seats_number, :carrying, :hit)
   end
 end

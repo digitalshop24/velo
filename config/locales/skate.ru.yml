@@ -7,4 +7,5 @@ ru:
         manufacturer: "Производитель"
         name: "Название"
         price: "Цена"
+        old_price: "Старая цена"
         description: "Описание"

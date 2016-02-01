@@ -6,6 +6,7 @@ ru:
         hit: "Хит продаж"
         name: "Название"
         price: "Цена"
+        old_price: "Старая цена"
         manufacturer: "Производитель"
         recommended_age: "Рекомендуемый возраст"
         use: "Назначение"

@@ -93,6 +93,6 @@ class TubingsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tubing_params
-    params.require(:tubing).permit(:price, :name, :manufacturer_id, :bottom_material, :top_material, :diameter, :handles_type, :tow_rope, :description, :display, :hit)
+    params.require(:tubing).permit(:price, :old_price, :name, :manufacturer_id, :bottom_material, :top_material, :diameter, :handles_type, :tow_rope, :description, :display, :hit)
   end
 end

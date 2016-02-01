@@ -1,6 +1,6 @@
 module API
   module Entities
-    class WinterPreview < ProductEntity
+    class WinterPreview < ProductPreviewEntity
       expose :id do |product|
         product.id + (product.class.name == 'Icesled' ? 1000 : 0)
       end
@@ -12,9 +12,7 @@ module API
       end
 
       expose :name
-      expose :price do |obj|
-        obj.price_rub
-      end
+
       expose :image
     end
   end

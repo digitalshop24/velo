@@ -1,14 +1,12 @@
 module API
   module Entities
-    class SledPreview < ProductEntity
+    class SledPreview < ProductPreviewEntity
       expose :id
       expose :manufacturer do |sled|
         sled.manufacturer.name
       end
       expose :name
-      expose :price do |obj|
-        obj.price_rub
-      end
+
       expose :image
     end
     class Sled < ProductEntity
@@ -19,9 +17,7 @@ module API
       with_options(format_with: :to_s_ru) do
         expose :name
         expose :image
-        expose :price do |obj|
-          obj.price_rub
-        end
+
         expose :description
 
         expose :recommended_age

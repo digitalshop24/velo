@@ -14,6 +14,7 @@ module API
       mount API::V1::Skates
       mount API::V1::Sportgoods
       mount API::V1::SportgoodsCategories
+      mount API::V1::Reviews
 
       mount API::V1::Winter
     end
