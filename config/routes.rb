@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :reviews
   scope path: '/admin' do
     resources :sportgoods do
       get 'update_categories', as: 'update_categories', on: :collection
     end
+    resources :reviews
     resources :sportgoods_categories
     resources :sportgoods_subcategories
     resources :skates
