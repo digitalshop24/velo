@@ -1,4 +1,5 @@
 class VariablesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_variable, only: [:edit, :update]
 
   # GET /variables/1/edit
