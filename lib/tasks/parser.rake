@@ -25,39 +25,41 @@ namespace :db do
     end
   end
 
+  task :parse_help => :environment do |t, args|
+    categories = ['велосипед', 'детский велосипед', 'самокат'].map{|c| search_category(c)[:category_key]}
+    categories.each do |category|
+      pairs = PAIRS[category]
+      pages = 5
+      1.upto pages do |page|
+        puts "PAGE: #{page}/#{pages}"
+        uri = "https://catalog.api.onliner.by/search/#{category}?page=#{page}"
+        json = open(uri).read
+        parsed = JSON.parse(json)
+
+        parsed["products"].each_with_index do |product, index|          
+          doc = get_doc(product["html_url"])
+          table = get_table(doc)
+          table.css('.product-tip__content').each do |tip|
+            key = tip.xpath('p').first.content.strip
+            value = tip.xpath('p').last.content.strip.gsub(/\n/, '<br>' )
+            dbtip = Tip.where(category: category, key: pairs[key]).first
+            unless dbtip
+              Tip.create(category: category, key: pairs[key], value: value)
+              count = Tip.where(category: category).count
+              puts "#{count.ordinalize} tip fot #{category}"
+            end
+          end
+        end
+      end
+      puts "#{category} done!!!"
+    end
+  end
+
   def save(category, product, specifications)
     case category
     when 'kickscooter'
       item = Kickscooter.new
-      pairs = [[:use, "Назначение"],
-               [:electric_drive, "Электропривод"],
-               [:max_weight, "Макс. вес катающегося"],
-               [:wheels_number, "Количество колёс"],
-               [:wheels_diameter, "Диаметр колёс"],
-               [:wheels_thickness, "Толщина колёс"],
-               [:wheels_material, "Материал колёс"],
-               [:wheels_hardness, "Твёрдость колёс"],
-               [:inflatable_wheels, "Надувные колёса"],
-               [:bearings, "Подшипники"],
-               [:platform_material, "Материал платформы"],
-               [:folding, "Складная конструкция"],
-               [:seat, "Сиденье"],
-               [:amortization, "Амортизация"],
-               [:front_break, "Передний тормоз"],
-               [:rear_break, "Задний тормоз"],
-               [:tilt_handle_control, "Управление отклонением ручки"],
-               [:wheels_luminodiodes, "Светодиоды в колёсах"],
-               [:min_handlebar_height, "Минимальная высота руля"],
-               [:max_handlebar_height, "Максимальная высота руля"],
-               [:platform_length, "Длина платформы (деки)"],
-               [:platform_width, "Ширина платформы (деки)"],
-               [:length, "Длина"],
-               [:weight, "Вес"],
-               [:horn, "Звонок или клаксон"],
-               [:basket, "Корзина"],
-               [:footboard, "Подножка"],
-               [:belt, "Ремень"]
-               ]
+      pairs = PAIRS['kickscooter']
     when 'bike'
       item = Bike.new
       if specifications["Женский велосипед"]
@@ -67,71 +69,7 @@ namespace :db do
       else
         item.bike_type = "мужской"
       end
-      pairs = [[:year, "Дата выхода на рынок"],
-               [:bike_class, "Класс"],
-               [:weight, "Вес"],
-               [:frame_type, "Тип рамы"],
-               [:handlebar, "Руль"],
-               [:handlebar, "Руль"],
-               [:chain, "Цепь"],
-               [:fork, "Вилка"],
-               [:pomp, "Насос"],
-               [:rims, "Обода"],
-               [:saddle, "Седло"],
-               [:roga, "«Рога»"],
-               [:grips, "Грипсы"],
-               [:light, "Фонарь"],
-               [:carriage, "Каретка"],
-               [:basket, "Корзина"],
-               [:shifters, "Манетки"],
-               [:handlebar_type, "Тип руля"],
-               [:luggage_rack, "Багажник"],
-               [:footboard, "Подножка"],
-               [:tires, "Покрышки"],
-               [:fork_type, "Тип вилки"],
-               [:saddle_type, "Тип седла"],
-               [:frame_color, "Цвет рамы"],
-               [:chain_protection, "Защита цепи"],
-               [:shifters_type, "Тип манеток"],
-               [:pedal_type, "Тип педалей"],
-               [:handlebar_width, "Ширина руля"],
-               [:tires_width, "Ширина шины"],
-               [:rear_fender, "Задний щиток"],
-               [:grips_model, "Модель грипс"],
-               [:double_rims, "Двойные обода"],
-               [:wheels_diameter, "Диаметр колёс"],
-               [:rear_brake, "Задний тормоз"],
-               [:rear_hub, "Задняя втулка"],
-               [:frame_material, "Материал рамы"],
-               [:folding_frame, "Складная рама"],
-               [:front_fender, "Передний щиток"],
-               [:front_hub, "Передняя втулка"],
-               [:front_brake, "Передний тормоз"],
-               [:crank_system, "Система шатунов"],
-               [:amortization_type, "Тип амортизации"],
-               [:transmission_type, "Тип трансмиссии"],
-               [:fork_locking, "Блокировка вилки"],
-               [:rims_material, "Материал ободьев"],
-               [:pedal_material, "Материал педалей"],
-               [:absorber_length, "Ход амортизатора"],
-               [:saddle_amortization, "Амортизация седла"],
-               [:horn, "Звонок или клаксон"],
-               [:rear_absorber, "Задний амортизатор"],
-               [:tread, "Рисунок протектора"],
-               [:fork_rod_diameter, "Диаметр штока вилки"],
-               [:rear_brake_type, "Тип заднего тормоза"],
-               [:rearview_mirror, "Зеркало заднего вида"],
-               [:ratchet, "Кассета или трещотка"],
-               [:rear_derailleur, "Задний переключатель"],
-               [:speeds_number, "Количество скоростей"],
-               [:front_break_type, "Тип переднего тормоза"],
-               [:front_derailleur, "Передний переключатель"],
-               [:brake_disks_diameter, "Диаметр тормозных дисков"],
-               [:stars_number_cassette, "Количество звезд в кассете"],
-               [:stars_number_system, "Количество звезд в системе"],
-               [:teeth_number_cassette, "Количество зубьев в звездах кассеты"],
-               [:teeth_number_system, "Количество зубьев в звездах системы"]
-               ]
+      pairs = PAIRS['bike']
 
     when 'kidsbike'
       if specifications["Количество колёс"].to_i == 3
@@ -141,47 +79,7 @@ namespace :db do
         item = Kidsbike.new
         category = 'kidsbike'
       end
-      pairs = [[:recommended_age, "Рекомендуемый возраст"],
-               [:use, "Назначение"],
-               [:weight, "Вес"],
-               [:seat, "Сиденье"],
-               [:seat_belts, "Ремни безопасности"],
-               [:handle, "Ручка"],
-               [:control_handle, "Управление ручкой"],
-               [:safety_rim, "Страховочный обод"],
-               [:visor, "Козырёк"],
-               [:music_unit, "Музыкальный блок"],
-               [:frame_material, "Материал рамы"],
-               [:folding_frame, "Складная рама"],
-               [:frame_color, "Цвет рамы"],
-               [:fork, "Вилка"],
-               [:fork_type, "Тип вилки"],
-               [:speeds_number, "Количество скоростей"],
-               [:rear_derailleur, "Задний переключатель"],
-               [:shifters, "Манетки"],
-               [:shifters_type, "Тип манеток"],
-               [:front_brake_type, "Тип переднего тормоза"],
-               [:rear_brake_type, "Тип заднего тормоза"],
-               [:wheels_number, "Количество колёс"],
-               [:wheels_diameter, "Диаметр колёс"],
-               [:front_wheel_diameter, "Диаметр переднего колеса"],
-               [:attached_wheels, "Приставные колеса"],
-               [:wheels_type, "Тип колёс"],
-               [:rear_wheels_stopper, "Стопор задних колёс"],
-               [:raincoat, "Дождевик"],
-               [:front_fender, "Передний щиток"],
-               [:rear_fender, "Задний щиток"],
-               [:chain_protection, "Защита цепи"],
-               [:luggage_rack, "Багажник"],
-               [:rearview_mirror, "Зеркало заднего вида"],
-               [:horn, "Звонок или клаксон"],
-               [:basket, "Корзина"],
-               [:bag, "Сумка (рюкзак)"],
-               [:flag, "Флажок"],
-               [:footboard, "Подножка"],
-               [:light, "Фонарь"],
-               [:pomp, "Насос"]
-               ]
+      pairs = PAIRS['kidsbike']
     end
     item = from_specification_to_columns(specifications, pairs, item)
     item.manufacturer = get_manufacturer(product, category)
@@ -215,8 +113,8 @@ namespace :db do
   end
 
   def from_specification_to_columns(specifications, pairs, item)
-    pairs.each do |pair|
-      item[pair[0]] = specifications[pair[1]]
+    pairs.keys.each do |key|
+      item[pairs[key]] = specifications[key]
     end
     item
   end
@@ -298,5 +196,144 @@ namespace :db do
     end
     images
   end
-
 end
+
+PAIRS = {
+  'kickscooter' => {
+    "Назначение" => :use ,
+    "Электропривод" => :electric_drive ,
+    "Макс. вес катающегося" => :max_weight ,
+    "Количество колёс" => :wheels_number ,
+    "Диаметр колёс" => :wheels_diameter ,
+    "Толщина колёс" => :wheels_thickness ,
+    "Материал колёс" => :wheels_material ,
+    "Твёрдость колёс" => :wheels_hardness ,
+    "Надувные колёса" => :inflatable_wheels ,
+    "Подшипники" => :bearings ,
+    "Материал платформы" => :platform_material ,
+    "Складная конструкция" => :folding ,
+    "Сиденье" => :seat ,
+    "Амортизация" => :amortization ,
+    "Передний тормоз" => :front_break ,
+    "Задний тормоз" => :rear_break ,
+    "Управление отклонением ручки" => :tilt_handle_control ,
+    "Светодиоды в колёсах" => :wheels_luminodiodes ,
+    "Минимальная высота руля" => :min_handlebar_height ,
+    "Максимальная высота руля" => :max_handlebar_height ,
+    "Длина платформы (деки)" => :platform_length ,
+    "Ширина платформы (деки)" => :platform_width ,
+    "Длина" => :length ,
+    "Вес" => :weight ,
+    "Звонок или клаксон" => :horn ,
+    "Корзина" => :basket ,
+    "Подножка" => :footboard ,
+    "Ремень" => :belt
+  },
+  'bike' => {
+    "Дата выхода на рынок" => :year ,
+    "Класс" => :bike_class ,
+    "Вес" => :weight ,
+    "Тип рамы" => :frame_type ,
+    "Руль" => :handlebar ,
+    "Цепь" => :chain ,
+    "Вилка" => :fork ,
+    "Насос" => :pomp ,
+    "Обода" => :rims ,
+    "Седло" => :saddle ,
+    "«Рога»" => :roga ,
+    "Грипсы" => :grips ,
+    "Фонарь" => :light ,
+    "Каретка" => :carriage ,
+    "Корзина" => :basket ,
+    "Манетки" => :shifters ,
+    "Тип руля" => :handlebar_type ,
+    "Багажник" => :luggage_rack ,
+    "Подножка" => :footboard ,
+    "Покрышки" => :tires ,
+    "Тип вилки" => :fork_type ,
+    "Тип седла" => :saddle_type ,
+    "Цвет рамы" => :frame_color ,
+    "Защита цепи" => :chain_protection ,
+    "Тип манеток" => :shifters_type ,
+    "Тип педалей" => :pedal_type ,
+    "Ширина руля" => :handlebar_width ,
+    "Ширина шины" => :tires_width ,
+    "Задний щиток" => :rear_fender ,
+    "Модель грипс" => :grips_model ,
+    "Двойные обода" => :double_rims ,
+    "Диаметр колёс" => :wheels_diameter ,
+    "Задний тормоз" => :rear_brake ,
+    "Задняя втулка" => :rear_hub ,
+    "Материал рамы" => :frame_material ,
+    "Складная рама" => :folding_frame ,
+    "Передний щиток" => :front_fender ,
+    "Передняя втулка" => :front_hub ,
+    "Передний тормоз" => :front_brake ,
+    "Система шатунов" => :crank_system ,
+    "Тип амортизации" => :amortization_type ,
+    "Тип трансмиссии" => :transmission_type ,
+    "Блокировка вилки" => :fork_locking ,
+    "Материал ободьев" => :rims_material ,
+    "Материал педалей" => :pedal_material ,
+    "Ход амортизатора" => :absorber_length ,
+    "Амортизация седла" => :saddle_amortization ,
+    "Звонок или клаксон" => :horn ,
+    "Задний амортизатор" => :rear_absorber ,
+    "Рисунок протектора" => :tread ,
+    "Диаметр штока вилки" => :fork_rod_diameter ,
+    "Тип заднего тормоза" => :rear_brake_type ,
+    "Зеркало заднего вида" => :rearview_mirror ,
+    "Кассета или трещотка" => :ratchet ,
+    "Задний переключатель" => :rear_derailleur ,
+    "Количество скоростей" => :speeds_number ,
+    "Тип переднего тормоза" => :front_break_type ,
+    "Передний переключатель" => :front_derailleur ,
+    "Диаметр тормозных дисков" => :brake_disks_diameter ,
+    "Количество звезд в кассете" => :stars_number_cassette ,
+    "Количество звезд в системе" => :stars_number_system ,
+    "Количество зубьев в звездах кассеты" => :teeth_number_cassette ,
+    "Количество зубьев в звездах системы" => :teeth_number_system
+  },
+  'kidsbike' => {
+    "Рекомендуемый возраст" => :recommended_age ,
+    "Назначение" => :use ,
+    "Вес" => :weight ,
+    "Сиденье" => :seat ,
+    "Ремни безопасности" => :seat_belts ,
+    "Ручка" => :handle ,
+    "Управление ручкой" => :control_handle ,
+    "Страховочный обод" => :safety_rim ,
+    "Козырёк" => :visor ,
+    "Музыкальный блок" => :music_unit ,
+    "Материал рамы" => :frame_material ,
+    "Складная рама" => :folding_frame ,
+    "Цвет рамы" => :frame_color ,
+    "Вилка" => :fork ,
+    "Тип вилки" => :fork_type ,
+    "Количество скоростей" => :speeds_number ,
+    "Задний переключатель" => :rear_derailleur ,
+    "Манетки" => :shifters ,
+    "Тип манеток" => :shifters_type ,
+    "Тип переднего тормоза" => :front_brake_type ,
+    "Тип заднего тормоза" => :rear_brake_type ,
+    "Количество колёс" => :wheels_number ,
+    "Диаметр колёс" => :wheels_diameter ,
+    "Диаметр переднего колеса" => :front_wheel_diameter ,
+    "Приставные колеса" => :attached_wheels ,
+    "Тип колёс" => :wheels_type ,
+    "Стопор задних колёс" => :rear_wheels_stopper ,
+    "Дождевик" => :raincoat ,
+    "Передний щиток" => :front_fender ,
+    "Задний щиток" => :rear_fender ,
+    "Защита цепи" => :chain_protection ,
+    "Багажник" => :luggage_rack ,
+    "Зеркало заднего вида" => :rearview_mirror ,
+    "Звонок или клаксон" => :horn ,
+    "Корзина" => :basket ,
+    "Сумка (рюкзак)" => :bag ,
+    "Флажок" => :flag ,
+    "Подножка" => :footboard ,
+    "Фонарь" => :light ,
+    "Насос" => :pomp
+  }
+}

@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ссылка:</strong>
+  <%= link_to @video.link, @video.link %>
+  <p><%= @video.embed.html_safe unless @video.link.empty? %></p>
+</p>
+
+<%= link_to 'Редактировать', edit_video_path(@video), class: 'btn btn-default' %>
+

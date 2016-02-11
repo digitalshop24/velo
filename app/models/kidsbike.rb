@@ -16,4 +16,7 @@ class Kidsbike < ActiveRecord::Base
 
   scope :trikes, -> { where(bike_type: 'трайк') }
   scope :kidsbikes, -> { where(bike_type: 'детский') }
+  def tips
+    Tip.where(category: 'kidsbike').pluck(:key, :value).to_h
+  end
 end

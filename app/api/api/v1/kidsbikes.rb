@@ -35,7 +35,9 @@ module API
         expose :music_unit
         expose :frame_material
         expose :folding_frame
-        expose :frame_color
+        expose :frame_color do |a|
+          a.frame_color.join(', ')
+        end
         expose :fork
         expose :fork_type
         expose :speeds_number
@@ -75,6 +77,7 @@ module API
           kidsbike.gallery.images.map(&:image)
         end
       end
+      expose :tips
     end
   end
 end

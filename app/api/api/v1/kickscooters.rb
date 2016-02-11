@@ -58,6 +58,7 @@ module API
       expose :similar, using: API::Entities::KickscooterPreview do |kickscooter|
         kickscooter.similar(:wheels_number, :electric_drive, :use)
       end
+      expose :tips
     end
   end
 end

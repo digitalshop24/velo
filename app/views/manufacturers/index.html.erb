@@ -11,4 +11,4 @@
 <% if @category %>
   <%= render "#{@category.pluralize}/links" %>
 <% end %>
-<%= link_to t(:creating, product_class: t('activerecord.models.manufacturer')), new_manufacturer_path , class: "btn btn-default"%>
+<%= link_to t(:creating, product_class: t('activerecord.models.manufacturer')), new_manufacturer_path, class: "btn btn-default"%>

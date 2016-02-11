@@ -1,0 +1,5 @@
+ru:
+  activerecord:
+    attributes:
+      video:
+        link: Ссылка

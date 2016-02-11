@@ -15,4 +15,8 @@ class Bike < ActiveRecord::Base
   Paperclip.interpolates :galleryable_path  do |attachment, style|
     "#{attachment.instance.gallery.galleryable_type.downcase}/#{attachment.instance.gallery.galleryable_id}"
   end
+
+  def tips
+    Tip.where(category: 'bike').pluck(:key, :value).to_h
+  end
 end

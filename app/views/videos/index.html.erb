@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Все видео</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Ссылка</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @videos.each do |video| %>
+      <tr>
+        <td><%= link_to video.link, video.link, target: '_blank' %></td>
+        <td>
+          <%= link_to 'Открыть', video, class: 'btn btn-default btn-sm' %>
+          <%= link_to 'Редактировать', edit_video_path(video), class: 'btn btn-default btn-sm' %>
+          <%= link_to 'Удалить', video, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-default btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Новое видео', new_video_path %>

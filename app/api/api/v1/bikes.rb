@@ -53,7 +53,9 @@ module API
         expose :tires
         expose :fork_type
         expose :saddle_type
-        expose :frame_color
+        expose :frame_color do |a|
+          a.frame_color.join(', ')
+        end
         expose :chain_protection
         expose :shifters_type
         expose :pedal_type
@@ -94,6 +96,7 @@ module API
         expose :stars_number_system
         expose :teeth_number_cassette
         expose :teeth_number_system
+        expose :tips
       end
       expose :gallery do |bike|
         if bike.gallery

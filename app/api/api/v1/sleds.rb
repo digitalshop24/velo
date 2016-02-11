@@ -31,7 +31,9 @@ module API
         expose :bag
         expose :flicker
         expose :backrest_adjustment
-        expose :color
+        expose :color do |a|
+          a.color.join(', ')
+        end
         expose :legs_case
       end
       expose :type do |product|

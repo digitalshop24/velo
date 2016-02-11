@@ -29,7 +29,7 @@ module API
       resource :winter do
         desc "Return all sled and icesleds"
         get do
-          present (Sled.preload(:manufacturer, gallery: [:images]) + Icesled.preload(:manufacturer, gallery: [:images])),
+          present (Sled.preload(:manufacturer, gallery: [:images]).where(display: true) + Icesled.preload(:manufacturer, gallery: [:images]).where(display: true)),
             with: API::Entities::WinterPreview
         end
         desc "Return icesled or sled by id"
