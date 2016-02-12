@@ -25,6 +25,9 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
+    unless @review.date
+      @review.date = @review.created_at
+    end
 
     respond_to do |format|
       if @review.save
@@ -69,6 +72,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:name, :email, :mark, :content, :approved, :reviewable_id, :reviewable_type)
+      params.require(:review).permit(:name, :email, :mark, :content, :approved, :reviewable_id, :reviewable_type, :date)
     end
 end

@@ -17,7 +17,7 @@ module API
         end
         post do
           parms = params
-          parms[:reviewable_type] = parms[:reviewable_type].capitalize
+          parms[:reviewable_type] = parms[:reviewable_type].singularize.capitalize
           parms = ActionController::Parameters.new(parms).permit(:name, :email, :mark, :content, :reviewable_id, :reviewable_type)
           Review.create(parms)
         end

@@ -6,6 +6,9 @@ module API
       expose :email
       expose :content
       expose :mark
+      expose :date do |review|
+        review.date.strftime("%d.%m.%Y")
+      end
     end
   end
 end
