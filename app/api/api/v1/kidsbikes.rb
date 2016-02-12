@@ -36,7 +36,7 @@ module API
         expose :frame_material
         expose :folding_frame
         expose :frame_color do |a|
-          a.frame_color.join(', ')
+          a.frame_color.join(' ')
         end
         expose :fork
         expose :fork_type

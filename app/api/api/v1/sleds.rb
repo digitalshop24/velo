@@ -32,7 +32,7 @@ module API
         expose :flicker
         expose :backrest_adjustment
         expose :color do |a|
-          a.color.join(', ')
+          a.color.join(' ')
         end
         expose :legs_case
       end

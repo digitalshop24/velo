@@ -54,7 +54,7 @@ module API
         expose :fork_type
         expose :saddle_type
         expose :frame_color do |a|
-          a.frame_color.join(', ')
+          a.frame_color.join(' ')
         end
         expose :chain_protection
         expose :shifters_type
