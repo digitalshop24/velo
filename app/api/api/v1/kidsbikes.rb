@@ -38,7 +38,9 @@ module API
         expose :frame_color do |a|
           a.frame_color.join(' ')
         end
-        expose :fork
+        expose :fork do |bike|
+          bike.fork
+        end
         expose :fork_type
         expose :speeds_number
         expose :rear_derailleur

@@ -37,7 +37,9 @@ module API
         expose :frame_type
         expose :handlebar
         expose :chain
-        expose :fork
+        expose :fork do |bike|
+          bike.fork
+        end
         expose :pomp
         expose :rims
         expose :saddle
