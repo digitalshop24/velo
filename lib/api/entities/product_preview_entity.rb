@@ -12,10 +12,10 @@ module API
       end
       expose :hit
       expose :price do |obj|
-        obj.price_rub
+        ActiveSupport::NumberHelper.number_to_delimited(obj.price_rub, delimiter: " ")
       end
       expose :old_price do |obj|
-        obj.old_price_rub
+        ActiveSupport::NumberHelper.number_to_delimited(obj.old_price_rub, delimiter: " ")
       end
     end
   end
