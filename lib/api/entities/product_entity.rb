@@ -3,7 +3,6 @@ module API
     class Review < Grape::Entity
       expose :id
       expose :name
-      expose :email
       expose :content
       expose :mark
       expose :date do |review|
