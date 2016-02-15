@@ -19,6 +19,9 @@ module API
       expose :reviews, using: API::Entities::Review do |obj|
         obj.approved_reviews
       end
+      expose :video do |product|
+        product.code
+      end
     end
   end
 end

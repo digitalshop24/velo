@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('#video_link').keyup(function(){
+	$('.youtube_link input').keyup(function(){
 		var val = $(this).val();
 		var parts = $(this).val().split('/');
 		var code = parts[parts.length-1]
@@ -14,14 +14,14 @@ $(document).ready(function(){
 		  	var embeddable = item['status']['embeddable'];
 		  	if(embeddable){
 		  		var embed = '<iframe width="444" height="250" src="https://www.youtube.com/embed/' + code + '" frameborder="0" allowfullscreen></iframe>';
-				$('#video_preview').html(embed);
+				$('.youtube_link .video_preview').html(embed);
 		  	}
 		  	else{
-		  		$('#video_preview').html('<p>Это видео нельзя встроить</p>');
+		  		$('.youtube_link .video_preview').html('<p>Это видео нельзя встроить</p>');
 		  	}
 		  }
 		  else{
-		    $('#video_preview').html('<p>Такого видео нету</p>');
+		    $('.youtube_link .video_preview').html('<p>Такого видео нету</p>');
 		  }
 		});		
 	});

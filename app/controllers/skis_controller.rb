@@ -97,6 +97,6 @@ class SkisController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def ski_params
-    params.require(:ski).permit(:manufacturer_id, :name, :price, :old_price, :poles, :grid, :size, :description, :display, :image, :hit)
+    params.require(:ski).permit(:video, :manufacturer_id, :name, :price, :old_price, :poles, :grid, :size, :description, :display, :image, :hit)
   end
 end

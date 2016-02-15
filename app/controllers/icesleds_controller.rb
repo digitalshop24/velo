@@ -93,6 +93,6 @@ class IcesledsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def icesled_params
-    params.require(:icesled).permit(:price, :old_price, :manufacturer_id, :name, :image, :description, :material, :handles, :length, :display, :hit)
+    params.require(:icesled).permit(:video, :price, :old_price, :manufacturer_id, :name, :image, :description, :material, :handles, :length, :display, :hit)
   end
 end

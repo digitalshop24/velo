@@ -14,4 +14,11 @@ module Product
   def approved_reviews
     reviews.where(approved: true)
   end
+  SIZES = {width: 444, height: 250}
+  def embed
+    "<iframe width=\"#{SIZES[:width]}\" height=\"#{SIZES[:height]}\" src=\"https://www.youtube.com/embed/#{code}\" frameborder=\"0\" allowfullscreen></iframe>"
+  end
+  def code
+    video.split('/').last() if video
+  end
 end

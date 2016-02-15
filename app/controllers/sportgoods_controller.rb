@@ -106,6 +106,6 @@ class SportgoodsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def sportgood_params
-    params.require(:sportgood).permit(:price, :old_price, :manufacturer_id, :name, :image, :description, :display, :hit, :sportgoods_category_id, :sportgoods_subcategory_id)
+    params.require(:sportgood).permit(:video, :price, :old_price, :manufacturer_id, :name, :image, :description, :display, :hit, :sportgoods_category_id, :sportgoods_subcategory_id)
   end
 end

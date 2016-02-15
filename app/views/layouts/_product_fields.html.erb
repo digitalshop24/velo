@@ -6,3 +6,11 @@
   <%= f.label :old_price %><br>
   <%= f.number_field :old_price, step: 'any' %>
 </div>
+<div class="field">
+  <%= f.label :video %>
+  <div class='youtube_link'>
+    <%= f.text_field :video, placeholder: 'Ссылка на видео' %>
+    <p class="help-block">Ссылка вида: https://youtu.be/Im69kzhpR3I</p>
+    <p class="video_preview"><%= f.object.embed.html_safe if f.object.video && !f.object.video.empty? %></p>
+  </div>
+</div>

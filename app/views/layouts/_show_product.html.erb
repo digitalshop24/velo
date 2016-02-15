@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h2><%= "#{@product.manufacturer.name if @product.manufacturer} #{@product.name}" %></h2>
-<% attrs = @product.attributes.map(&:first) - ["id", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at", "manufacturer_id", "sportgoods_category_id", "sportgoods_subcategory_id"] %>
+<% attrs = @product.attributes.map(&:first) - ["id", "image_file_name", "image_content_type", "image_file_size", "image_updated_at", "created_at", "updated_at", "manufacturer_id", "sportgoods_category_id", "sportgoods_subcategory_id", "video"] %>
 <% attrs = ["sportgoods_category_name", "sportgoods_subcategory_name"] + attrs if @product.class.name == 'Sportgood' %>
 <p>
   <strong><%= t "activerecord.attributes.#{@product.class.to_s.downcase}.manufacturer" %>: </strong>
@@ -16,6 +16,7 @@
     <% end %>
   </p>
 <% end %>
+<strong>Видео:</strong><br><%= @product.embed.html_safe if @product.video && !@product.video.empty? %>
 <%= render 'layouts/gallery' %>
 </p>
 <%= link_to t(:edit), "/admin/#{@product.class.to_s.downcase.pluralize}/#{@product.id}/edit" %>
