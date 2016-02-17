@@ -20,7 +20,7 @@ module API
       end
       expose :video do |product|
         product.code
-      end
+      end      
     end
   end
 end

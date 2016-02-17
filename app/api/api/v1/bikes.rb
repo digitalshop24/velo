@@ -2,9 +2,6 @@ module API
   module Entities
     class BikePreview < ProductPreviewEntity
       expose :id
-      expose :full_name do |bike|
-        "#{bike.manufacturer.name} #{bike.name}"
-      end
       expose :manufacturer do |bike|
         bike.manufacturer.name
       end

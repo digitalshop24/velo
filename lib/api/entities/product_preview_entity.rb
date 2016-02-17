@@ -19,6 +19,9 @@ module API
         obj.old_price_rub
         # ActiveSupport::NumberHelper.number_to_delimited(obj.old_price_rub, delimiter: " ")
       end
+      expose :full_name do |product|
+        "#{product.manufacturer.name} #{product.name}"
+      end
     end
   end
 end
