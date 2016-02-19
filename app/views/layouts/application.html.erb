@@ -8,41 +8,35 @@
   </head>
   <body>
     <% if can? :manage, :bike %>
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-header">
-          <%= link_to 'RealBike', admin_path, class: "navbar-brand" %>
-          <div class="rate"><%= "Курс: #{Variable.rate.value} BYR/USD" %> <%= link_to 'Изменить', edit_variable_path(Variable.rate), class: 'btn btn-default btn-sm' %></div>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <% Manufacturer::CATEGORIES.each do |category|%>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= t("#{category[0].to_s}_plural") %> <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to 'Все', "/admin/manufacturers/category/#{category[0]}" %></li>
-                  <li><%= link_to 'Новые', "/admin/#{category[0].to_s.pluralize}?after=#{(Time.now-1.week).strftime('%F')}" %></li>
-                </ul>
-              </li>
-            <% end %>
-            <li>
-              <%= link_to 'Категории спорттоваров', sportgoods_categories_path %>
-            </li>
-            <li>
-              <%= link_to 'Отзывы', reviews_path %>
-            </li>
-            <% if can? :manage, User %>
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-header">
+            <%= link_to 'RealBike', admin_path, class: "navbar-brand" %>
+            <div class="rate"><%= "Курс: #{Variable.rate.value} BYR/USD" %> <%= link_to 'Изменить', edit_variable_path(Variable.rate), class: 'btn btn-default btn-sm' %></div>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <% Manufacturer::CATEGORIES.each do |category|%>
+                <li><%= link_to t("#{category[0]}_plural"), "/admin/manufacturers/category/#{category[0]}" %></li>
+              <% end %>
               <li>
-                <%= link_to 'Пользователи', users_path %>
+                <%= link_to 'Категории спорттоваров', sportgoods_categories_path %>
               </li>
-            <% end %>
-            <li>
-              <%= render 'layouts/login_links' %>
-            </li>
-          </ul>
+              <li>
+                <%= link_to 'Отзывы', reviews_path %>
+              </li>
+              <% if can? :manage, User %>
+                <li>
+                  <%= link_to 'Пользователи', users_path %>
+                </li>
+              <% end %>
+              <li>
+                <%= render 'layouts/login_links' %>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
     <% end %>
     <div class="container">
       <%= yield %>
