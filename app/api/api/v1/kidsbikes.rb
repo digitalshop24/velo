@@ -100,7 +100,7 @@ module API
         end
         desc "Return all kidsbikes"
         get do
-          present Kidsbike.kidsbikes.where(display: true).preload(:manufacturer, gallery: [:images]).paginate(page: params[:page], per_page: params[:per_page]), with: API::Entities::KidsbikePreview
+          present Kidsbike.where(display: true).preload(:manufacturer, gallery: [:images]).paginate(page: params[:page], per_page: params[:per_page]), with: API::Entities::KidsbikePreview
         end
         desc "Return kidsbike with id"
         get "/:id" do
