@@ -2,14 +2,15 @@ class ManufacturersController < ApplicationController
   load_and_authorize_resource
   before_action :set_manufacturer, only: [:show, :edit, :update, :destroy]
 
+  PER_PAGE = 100
   # GET /manufacturers
   # GET /manufacturers.json
   def index
     @category = params[:category]
     if @category
-      @manufacturers = Manufacturer.where(category: @category).order(:name).paginate(page: params[:page])
+      @manufacturers = Manufacturer.where(category: @category).order(:name).paginate(page: params[:page], per_page: PER_PAGE)
     else
-      @manufacturers = Manufacturer.order(:name).paginate(page: params[:page])
+      @manufacturers = Manufacturer.order(:name).paginate(page: params[:page], per_page: PER_PAGE)
     end
   end
 
@@ -91,6 +92,6 @@ class ManufacturersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def manufacturer_params
-      params.require(:manufacturer).permit(:name, :category)
+      params.require(:manufacturer).permit(:name, :category, :rate)
     end
 end

@@ -8,6 +8,10 @@
   <strong><%= t "activerecord.attributes.manufacturer.category" %>: </strong>
   <%= Manufacturer::CATEGORIES[@manufacturer.category.to_sym] %>
 </p>
+<p>
+  <strong><%= t "activerecord.attributes.manufacturer.rate" %>: </strong>
+  <%= @manufacturer.rate %>
+</p>
 <% if @manufacturer.id %>
   <%= link_to t(:edit), edit_manufacturer_path(@manufacturer) %>
   <br>
