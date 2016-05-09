@@ -3,6 +3,7 @@ class KidsbikesController < ApplicationController
   before_action :set_kidsbike, only: [:show, :edit, :update, :destroy]
 
   def index
+    @category = 'kidsbike'
     if params[:after]
       after = Date.parse(params[:after])
       @kidsbikes = Kidsbike.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])

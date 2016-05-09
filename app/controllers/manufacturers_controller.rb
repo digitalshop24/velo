@@ -33,6 +33,8 @@ class ManufacturersController < ApplicationController
   # GET /manufacturers/1
   # GET /manufacturers/1.json
   def show
+    @per_page = PER_PAGE
+    @category = @manufacturer.category
   end
 
   # GET /manufacturers/new

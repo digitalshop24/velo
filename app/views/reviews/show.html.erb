@@ -27,7 +27,7 @@
 
 <p>
   <strong>Товар:</strong>
-  <%= link_to "#{@review.reviewable.manufacturer.name} #{@review.reviewable.name}", "/admin/#{@review.reviewable_type.downcase.pluralize}/#{@review.reviewable_id}" if @review.reviewable %>
+  <%= link_to "#{@review.reviewable.manufacturer.name} #{@review.reviewable.name}", "/admin/#{@review.reviewable_type.downcase.pluralize}/#{@review.reviewable_id}" %>
 </p>
 
 <p>

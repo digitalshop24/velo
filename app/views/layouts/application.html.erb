@@ -39,6 +39,12 @@
       </nav>
     <% end %>
     <div class="container">
+      <% if @category && @category.to_s.in?(Manufacturer::CATEGORIES.keys.map(&:to_s)) %>
+        <%= form_tag "/admin/search/#{@category}", method: :get, class: 'form-inline' do %>
+          <%= text_field_tag :query, params[:query], class: 'form-control' %>
+          <%= submit_tag 'Поиск', class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
       <%= yield %>
       <%= link_to t(:back), "javascript:history.back()", class: 'btn btn-default' %>
     </div>

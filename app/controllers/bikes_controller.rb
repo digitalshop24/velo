@@ -5,6 +5,7 @@ class BikesController < ApplicationController
   # GET /bikes
   # GET /bikes.json
   def index
+    @category = 'bike'
     if params[:after]
       after = Date.parse(params[:after])
       @bikes = Bike.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])

@@ -23,18 +23,5 @@
 </span>
 <br>
 <br>
-<% case @manufacturer.category %>
-<% when 'bike' then @bikes = @manufacturer.bikes.order(:name).paginate(:page => params[:page]) %>
-<% when 'kickscooter' then @kickscooters = @manufacturer.kickscooters.order(:name).paginate(:page => params[:page]) %>
-<% when 'kidsbike' then @kidsbikes = @manufacturer.kidsbikes.order(:name).paginate(:page => params[:page]) %>
-<% when 'snowroll' then @snowrolls = @manufacturer.snowrolls.order(:name).paginate(:page => params[:page]) %>
-<% when 'sled' then @sleds = @manufacturer.sleds.order(:name).paginate(:page => params[:page]) %>
-<% when 'icesled' then @icesleds = @manufacturer.icesleds.order(:name).paginate(:page => params[:page]) %>
-<% when 'tubing' then @tubings = @manufacturer.tubings.order(:name).paginate(:page => params[:page]) %>
-<% when 'electriccar' then @electriccars = @manufacturer.electriccars.order(:name).paginate(:page => params[:page]) %>
-<% when 'trike' then @trikes = @manufacturer.trikes.order(:name).paginate(:page => params[:page]) %>
-<% when 'ski' then @skis = @manufacturer.skis.order(:name).paginate(:page => params[:page]) %>
-<% when 'skate' then @skates = @manufacturer.skates.order(:name).paginate(:page => params[:page]) %>
-<% when 'sportgood' then @sportgoods = @manufacturer.sportgoods.order(:name).paginate(:page => params[:page]) %>
-<% end %>
+<% @products = @manufacturer.send(@manufacturer.category.pluralize.to_sym).order(:name).paginate(page: params[:page], per_page: @per_page) %>
 <%= render "#{@manufacturer.category.pluralize}/index" %>

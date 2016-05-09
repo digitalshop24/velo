@@ -5,6 +5,7 @@ class TubingsController < ApplicationController
   # GET /tubings
   # GET /tubings.json
   def index
+    @category = 'tubing'
     if params[:after]
       after = Date.parse(params[:after])
       @tubings = Tubing.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])

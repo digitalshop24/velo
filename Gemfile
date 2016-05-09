@@ -36,6 +36,7 @@ gem 'cancancan', '~> 1.13', '>= 1.13.1'
 
 gem 'grape', '~> 0.13.0'
 gem 'grape-entity', '~> 0.4.8'
+gem 'pry'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

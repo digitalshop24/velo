@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get '/manufacturers/category/:category', to: 'manufacturers#index'
     delete '/images/:product_id/:image_id', to: 'images#destroy', as: 'image'
     get '/:product_class/:product_id/:image_id/preview', to: 'preview#set', as: 'preview'
+    get '/search/:model', to: 'products#search', as: 'products_search'
   end
 
   mount API::Root => '/'

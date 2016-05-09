@@ -3,6 +3,7 @@ class TrikesController < ApplicationController
   before_action :set_trike, only: [:show, :edit, :update, :destroy]
 
   def index
+    @category = 'trike'
     if params[:after]
       after = Date.parse(params[:after])
       @trikes = Trike.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])

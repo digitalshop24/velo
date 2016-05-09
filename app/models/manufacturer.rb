@@ -15,4 +15,8 @@ class Manufacturer < ActiveRecord::Base
   has_many :skis, dependent: :destroy
   has_many :skates, dependent: :destroy
   has_many :sportgoods, dependent: :destroy
+
+  def self.category? category
+    category.to_s.in? CATEGORIES.keys.map(&:to_s)
+  end
 end

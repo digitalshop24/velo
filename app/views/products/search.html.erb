@@ -1,0 +1,4 @@
+<h3>Результаты поиска по категории "<%= Manufacturer::CATEGORIES[@category] %>"</h3>
+<% if @products %>
+  <%= render "#{@table}/index" %>
+<% end %>

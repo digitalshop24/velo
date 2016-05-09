@@ -5,6 +5,7 @@ class ElectriccarsController < ApplicationController
   # GET /electriccars
   # GET /electriccars.json
   def index
+    @category = 'electriccar'
     if params[:after]
       after = Date.parse(params[:after])
       @electriccars = Electriccar.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
