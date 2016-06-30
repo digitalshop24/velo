@@ -6,6 +6,7 @@
       <th><%= t "activerecord.attributes.#{class_type}.manufacturer" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.name" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.price" %></th>
+      <th>Цена, руб</th>
       <th><%= t "activerecord.attributes.#{class_type}.use" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.electric_drive" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.weight" %></th>
@@ -19,6 +20,7 @@
         <td><%= link_to kickscooter.manufacturer.name, manufacturer_path(kickscooter.manufacturer) %></td>
         <td><%= link_to kickscooter.name, kickscooter_path(kickscooter) %></td>
         <td><%= kickscooter.price %></td>
+        <td><%= kickscooter.price_rub %></td>
         <td><%= kickscooter.use %></td>
         <td><%= kickscooter.electric_drive %></td>
         <td><%= kickscooter.weight %></td>

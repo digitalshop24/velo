@@ -6,6 +6,7 @@
       <th><%= t "activerecord.attributes.#{class_type}.manufacturer" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.name" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.price" %></th>
+      <th>Цена, руб</th>
       <th><%= t "activerecord.attributes.#{class_type}.use" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.recommended_age" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.weight" %></th>
@@ -19,6 +20,7 @@
         <td><%= link_to trike.manufacturer.name, manufacturer_path(trike.manufacturer) %></td>
         <td><%= link_to trike.name, trike_path(trike) %></td>
         <td><%= trike.price %></td>
+        <td><%= trike.price_rub %></td>
         <td><%= trike.use %></td>
         <td><%= trike.recommended_age %></td>
         <td><%= trike.weight %></td>

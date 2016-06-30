@@ -6,6 +6,8 @@
       <th><%= t "activerecord.attributes.#{class_type}.manufacturer" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.name" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.price" %></th>
+      <th>Цена, руб</th>
+      <th><%= t "activerecord.attributes.#{class_type}.year" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.year" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.bike_class" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.bike_type" %></th>
@@ -20,6 +22,7 @@
         <td><%= link_to bike.manufacturer.name, manufacturer_path(bike.manufacturer) if bike.manufacturer %></td>
         <td><%= link_to bike.name, bike_path(bike) %></td>
         <td><%= bike.price %></td>
+        <td><%= bike.price_rub %></td>
         <td><%= bike.year %></td>
         <td><%= bike.bike_class %></td>
         <td><%= bike.bike_type %></td>

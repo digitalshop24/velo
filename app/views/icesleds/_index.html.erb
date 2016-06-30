@@ -6,6 +6,7 @@
       <th><%= t "activerecord.attributes.#{class_type}.manufacturer" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.name" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.price" %></th>
+      <th>Цена, руб</th>
       <th><%= t "activerecord.attributes.#{class_type}.material" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.length" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.display" %></th>
@@ -18,6 +19,7 @@
         <td><%= link_to icesled.manufacturer.name, manufacturer_path(icesled.manufacturer) %></td>
         <td><%= link_to icesled.name, icesled_path(icesled) %></td>
         <td><%= icesled.price %></td>
+        <td><%= icesled.price_rub %></td>
         <td><%= icesled.material %></td>
         <td><%= icesled.length %></td>
         <td>

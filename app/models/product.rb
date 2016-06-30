@@ -6,8 +6,12 @@ module Product
     self.class.where(hit: true, display: true).order("RANDOM()").limit(4)
   end
   def price_rub
-    rate = manufacturer.rate.to_i == 0 ? Variable.rate.value : manufacturer.rate
-    (price * rate / 5000).ceil.to_i * 5000 if price
+    if onliner_price
+      onliner_price.to_i
+    else
+      rate = manufacturer.rate.to_i == 0 ? Variable.rate.value : manufacturer.rate
+      (price * rate / 5000).ceil.to_i * 5000 if price
+    end
   end
   def old_price_rub
     rate = manufacturer.rate.to_i == 0 ? Variable.rate.value : manufacturer.rate

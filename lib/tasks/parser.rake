@@ -25,6 +25,38 @@ namespace :db do
     end
   end
 
+  task parse_prices: :environment do
+    categories = []
+    category_names = ['велосипед', 'детский велосипед', 'самокат'].each do |c|
+      cat = search_category(c)[:category_key]
+      if cat == 'kidsbike'
+        categories << { category: 'kidsbike', category_key: cat, params: "num_wheels[0]=4&num_wheels[1]=2&num_wheels[operation]=union" }
+        categories << { category: 'trike', category_key: cat, params: "num_wheels[0]=3&num_wheels[1]=2&num_wheels[operation]=union" }
+      else
+        categories << { category: cat, category_key: cat }
+      end
+    end
+    categories.each do |category|
+      category_key = category[:category_key]
+      pages = pages_count(category_key)
+      1.upto pages[:last] do |page|
+        uri = "https://catalog.api.onliner.by/search/#{category_key}?page=#{page}&#{category[:params]}"
+        json = open(uri).read
+        parsed = JSON.parse(json)
+        parsed["products"].each do |product|
+          manufacturer = get_manufacturer(product, category[:category])
+          ar_product = manufacturer.send(category[:category].pluralize.to_sym).find_by(name: product['name'])
+          if ar_product
+            ar_product.onliner_key = product['key']
+            ar_product.onliner_price = product['prices']['min'] if product['prices'] && product['prices']['min']
+            ar_product.save if ar_product.changed?
+          end
+        end
+        puts "page #{page}/#{pages[:last]} #{category[:category]} done"
+      end
+    end
+  end
+
   task :parse_help => :environment do |t, args|
     categories = ['велосипед', 'детский велосипед', 'самокат'].map{|c| search_category(c)[:category_key]}
     categories.each do |category|
@@ -36,7 +68,7 @@ namespace :db do
         json = open(uri).read
         parsed = JSON.parse(json)
 
-        parsed["products"].each_with_index do |product, index|          
+        parsed["products"].each_with_index do |product, index|
           doc = get_doc(product["html_url"])
           table = get_table(doc)
           table.css('.product-tip__content').each do |tip|

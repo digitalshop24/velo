@@ -6,6 +6,7 @@
       <th><%= t "activerecord.attributes.#{class_type}.manufacturer" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.name" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.price" %></th>
+      <th>Цена, руб</th>
       <th><%= t "activerecord.attributes.#{class_type}.age" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.weight" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.display" %></th>
@@ -18,6 +19,7 @@
         <td><%= link_to electriccar.manufacturer.name, manufacturer_path(electriccar.manufacturer) %></td>
         <td><%= link_to electriccar.name, electriccar_path(electriccar) %></td>
         <td><%= electriccar.price %></td>
+        <td><%= electriccar.price_rub %></td>
         <td><%= electriccar.age %></td>
         <td><%= electriccar.weight %></td>
         <td>
