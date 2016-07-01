@@ -183,7 +183,15 @@ namespace :db do
 
   def pages_count(category_key)
     category_uri = "https://catalog.api.onliner.by/search/#{category_key}"
-    json = open(category_uri).read
+    tries = 0
+    json = begin
+      open(category_uri).read
+    rescue => error
+      puts("ERROR ===>> #{error.class} and #{error.message}")
+      sleep(2)
+      tries += 1
+      retry if tries < 5
+    end
     parsed = JSON.parse(json)
     { last: parsed["page"]["last"].to_i, limit: parsed["page"]["limit"].to_i }
   end
