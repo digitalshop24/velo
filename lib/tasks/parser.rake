@@ -41,7 +41,15 @@ namespace :db do
       pages = pages_count(category_key)
       1.upto pages[:last] do |page|
         uri = "https://catalog.api.onliner.by/search/#{category_key}?page=#{page}&#{category[:params]}"
-        json = open(uri).read
+        tries = 0
+        json = begin
+          open(uri).read
+        rescue => error
+          puts("ERROR ===>> #{error.class} and #{error.message}")
+          sleep(2)
+          tries += 1
+          retry if tries < 5
+        end
         parsed = JSON.parse(json)
         parsed["products"].each do |product|
           manufacturer = get_manufacturer(product, category[:category])
