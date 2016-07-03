@@ -12,7 +12,7 @@ class ManufacturersController < ApplicationController
       @manufacturers = @manufacturers.where(category: @category)
       @manufacturers = @manufacturers.joins(@category.pluralize.to_sym).where("#{@category.pluralize}.display = ?", params[:display]) if params[:display]
     end
-    @manufacturers = @manufacturers.paginate(page: params[:page], per_page: PER_PAGE)
+    @manufacturers = @manufacturers.distinct.paginate(page: params[:page], per_page: PER_PAGE)
   end
 
   def change_display
