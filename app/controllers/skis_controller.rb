@@ -2,18 +2,6 @@ class SkisController < ApplicationController
   load_and_authorize_resource
   before_action :set_ski, only: [:show, :edit, :update, :destroy]
 
-  # GET /skis
-  # GET /skis.json
-  def index
-    @category = 'ski'
-    if params[:after]
-      after = Date.parse(params[:after])
-      @skis = Ski.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
-    else
-      @skis = Ski.preload(:manufacturer).paginate(:page => params[:page])
-    end
-  end
-
   # GET /skis/1
   # GET /skis/1.json
   def show

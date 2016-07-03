@@ -2,18 +2,6 @@ class SnowrollsController < ApplicationController
   load_and_authorize_resource
   before_action :set_snowroll, only: [:show, :edit, :update, :destroy]
 
-  # GET /snowrolls
-  # GET /snowrolls.json
-  def index
-    @category = 'snowroll'
-    if params[:after]
-      after = Date.parse(params[:after])
-      @snowrolls = Snowroll.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
-    else
-      @snowrolls = Snowroll.preload(:manufacturer).paginate(:page => params[:page])
-    end
-  end
-
   # GET /snowrolls/1
   # GET /snowrolls/1.json
   def show

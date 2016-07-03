@@ -2,18 +2,6 @@ class KickscootersController < ApplicationController
   load_and_authorize_resource
   before_action :set_kickscooter, only: [:show, :edit, :update, :destroy]
 
-  # GET /kickscooters
-  # GET /kickscooters.json
-  def index
-    @category = 'kickscooter'
-    if params[:after]
-      after = Date.parse(params[:after])
-      @kickscooters = Kickscooter.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
-    else
-      @kickscooters = Kickscooter.preload(:manufacturer).paginate(:page => params[:page])
-    end
-  end
-
   # GET /kickscooters/1
   # GET /kickscooters/1.json
   def show

@@ -2,16 +2,6 @@ class TrikesController < ApplicationController
   load_and_authorize_resource
   before_action :set_trike, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @category = 'trike'
-    if params[:after]
-      after = Date.parse(params[:after])
-      @trikes = Trike.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
-    else
-      @trikes = Trike.paginate(page: params[:page])
-    end
-  end
-
   def show
   end
 

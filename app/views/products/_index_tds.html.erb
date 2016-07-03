@@ -1,0 +1,8 @@
+<td class="price-rub">
+  <%= product.price_rub %>
+  <% if product.onliner_price && product.old_onliner_price %>
+    <% glyphicon = 'glyphicon-arrow-up text-success' if product.onliner_price > product.old_onliner_price %>
+    <% glyphicon = 'glyphicon-arrow-down text-danger' if product.onliner_price < product.old_onliner_price %>
+    <span class="glyphicon <%= glyphicon %>" aria-hidden="true"></span>
+  <% end %>
+</td>

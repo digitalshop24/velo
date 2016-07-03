@@ -2,18 +2,6 @@ class TubingsController < ApplicationController
   load_and_authorize_resource
   before_action :set_tubing, only: [:show, :edit, :update, :destroy]
 
-  # GET /tubings
-  # GET /tubings.json
-  def index
-    @category = 'tubing'
-    if params[:after]
-      after = Date.parse(params[:after])
-      @tubings = Tubing.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
-    else
-      @tubings = Tubing.preload(:manufacturer).paginate(:page => params[:page])
-    end
-  end
-
   # GET /tubings/1
   # GET /tubings/1.json
   def show

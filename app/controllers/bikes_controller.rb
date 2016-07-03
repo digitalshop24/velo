@@ -2,18 +2,6 @@ class BikesController < ApplicationController
   load_and_authorize_resource
   before_action :set_bike, only: [:show, :edit, :update, :destroy]
 
-  # GET /bikes
-  # GET /bikes.json
-  def index
-    @category = 'bike'
-    if params[:after]
-      after = Date.parse(params[:after])
-      @bikes = Bike.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
-    else
-      @bikes = Bike.preload(:manufacturer).paginate(page: params[:page])
-    end
-  end
-
   # GET /bikes/1
   # GET /bikes/1.json
   def show

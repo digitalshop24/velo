@@ -1,18 +1,6 @@
 class SkatesController < ApplicationController
   before_action :set_skate, only: [:show, :edit, :update, :destroy]
 
-  # GET /skates
-  # GET /skates.json
-  def index
-    @category = 'skate'
-    if params[:after]
-      after = Date.parse(params[:after])
-      @skates = Skate.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
-    else
-      @skates = Skate.preload(:manufacturer).paginate(:page => params[:page])
-    end
-  end
-
   # GET /skates/1
   # GET /skates/1.json
   def show

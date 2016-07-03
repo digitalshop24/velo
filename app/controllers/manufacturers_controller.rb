@@ -7,11 +7,12 @@ class ManufacturersController < ApplicationController
   # GET /manufacturers.json
   def index
     @category = params[:category]
+    @manufacturers = Manufacturer.all.order(:name)
     if @category
-      @manufacturers = Manufacturer.where(category: @category).order(:name).paginate(page: params[:page], per_page: PER_PAGE)
-    else
-      @manufacturers = Manufacturer.order(:name).paginate(page: params[:page], per_page: PER_PAGE)
+      @manufacturers = @manufacturers.where(category: @category)
+      @manufacturers = @manufacturers.joins(@category.pluralize.to_sym).where("#{@category.pluralize}.display = ?", params[:display]) if params[:display]
     end
+    @manufacturers = @manufacturers.paginate(page: params[:page], per_page: PER_PAGE)
   end
 
   def change_display

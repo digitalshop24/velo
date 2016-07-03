@@ -2,18 +2,6 @@ class IcesledsController < ApplicationController
   load_and_authorize_resource
   before_action :set_icesled, only: [:show, :edit, :update, :destroy]
 
-  # GET /icesleds
-  # GET /icesleds.json
-  def index
-    @category = 'icesled'
-    if params[:after]
-      after = Date.parse(params[:after])
-      @icesleds = Icesled.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
-    else
-      @icesleds = Icesled.preload(:manufacturer).order(:name).paginate(:page => params[:page])
-    end
-  end
-
   # GET /icesleds/1
   # GET /icesleds/1.json
   def show

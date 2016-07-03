@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160630204841) do
+ActiveRecord::Schema.define(version: 20160703200932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   add_index "bikes", ["manufacturer_id"], name: "index_bikes_on_manufacturer_id", using: :btree
@@ -131,6 +132,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   add_index "electriccars", ["manufacturer_id"], name: "index_electriccars_on_manufacturer_id", using: :btree
@@ -164,6 +166,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   add_index "icesleds", ["manufacturer_id"], name: "index_icesleds_on_manufacturer_id", using: :btree
@@ -225,6 +228,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   add_index "kickscooters", ["manufacturer_id"], name: "index_kickscooters_on_manufacturer_id", using: :btree
@@ -290,6 +294,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   add_index "kidsbikes", ["manufacturer_id"], name: "index_kidsbikes_on_manufacturer_id", using: :btree
@@ -334,6 +339,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   add_index "skates", ["manufacturer_id"], name: "index_skates_on_manufacturer_id", using: :btree
@@ -358,6 +364,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   add_index "skis", ["manufacturer_id"], name: "index_skis_on_manufacturer_id", using: :btree
@@ -392,6 +399,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   add_index "sleds", ["manufacturer_id"], name: "index_sleds_on_manufacturer_id", using: :btree
@@ -415,6 +423,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   add_index "snowrolls", ["manufacturer_id"], name: "index_snowrolls_on_manufacturer_id", using: :btree
@@ -438,6 +447,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   add_index "sportgoods", ["manufacturer_id"], name: "index_sportgoods_on_manufacturer_id", using: :btree
@@ -533,6 +543,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   create_table "tubings", force: :cascade do |t|
@@ -557,6 +568,7 @@ ActiveRecord::Schema.define(version: 20160630204841) do
     t.string   "video"
     t.float    "onliner_price"
     t.string   "onliner_key"
+    t.float    "old_onliner_price"
   end
 
   add_index "tubings", ["manufacturer_id"], name: "index_tubings_on_manufacturer_id", using: :btree

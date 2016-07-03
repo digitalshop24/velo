@@ -2,16 +2,6 @@ class KidsbikesController < ApplicationController
   load_and_authorize_resource
   before_action :set_kidsbike, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @category = 'kidsbike'
-    if params[:after]
-      after = Date.parse(params[:after])
-      @kidsbikes = Kidsbike.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
-    else
-      @kidsbikes = Kidsbike.paginate(:page => params[:page])
-    end
-  end
-
   def show
   end
 

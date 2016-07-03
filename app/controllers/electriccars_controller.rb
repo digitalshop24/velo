@@ -2,18 +2,6 @@ class ElectriccarsController < ApplicationController
   load_and_authorize_resource
   before_action :set_electriccar, only: [:show, :edit, :update, :destroy]
 
-  # GET /electriccars
-  # GET /electriccars.json
-  def index
-    @category = 'electriccar'
-    if params[:after]
-      after = Date.parse(params[:after])
-      @electriccars = Electriccar.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
-    else
-      @electriccars = Electriccar.preload(:manufacturer).paginate(:page => params[:page])
-    end
-  end
-
   # GET /electriccars/1
   # GET /electriccars/1.json
   def show

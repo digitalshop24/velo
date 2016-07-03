@@ -2,17 +2,6 @@ class SledsController < ApplicationController
   load_and_authorize_resource
   before_action :set_sled, only: [:show, :edit, :update, :destroy]
 
-  # GET /sleds
-  # GET /sleds.json
-  def index
-    if params[:after]
-      after = Date.parse(params[:after])
-      @sleds = Sled.where('created_at > ?', after).preload(:manufacturer).paginate(page: params[:page])
-    else
-      @sleds = Sled.preload(:manufacturer).paginate(:page => params[:page])
-    end
-  end
-
   # GET /sleds/1
   # GET /sleds/1.json
   def show

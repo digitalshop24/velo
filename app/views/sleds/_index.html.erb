@@ -3,6 +3,7 @@
   <thead>
     <tr>
       <% class_type = 'sled' %>
+      <th>Фото</th>
       <th><%= t "activerecord.attributes.#{class_type}.manufacturer" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.name" %></th>
       <th><%= t "activerecord.attributes.#{class_type}.runners_width" %></th>
@@ -14,6 +15,7 @@
   <tbody>
     <% @sleds.each do |sled| %>
       <tr>
+        <td><%= image_tag sled.image.url(:preview), height: 40 if sled.image?  %></td>
         <td><%= link_to sled.manufacturer.name, manufacturer_path(sled.manufacturer) %></td>
         <td><%= link_to sled.name, sled_path(sled) %></td>
         <td><%= sled.runners_width %></td>
