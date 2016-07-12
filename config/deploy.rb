@@ -57,9 +57,7 @@ namespace :deploy do
       execute "mkdir  /var/www/apps/#{application}/socket/"
       execute "mkdir #{shared_path}/system"
 
-      upload!('shared/application.yml', "#{shared_path}/config/application.yml")
-
-      upload!('shared/Procfile', "#{shared_path}/Procfile")
+      upload!('config/application.yml', "#{shared_path}/config/application.yml")
 
       within release_path do
         with rails_env: fetch(:rails_env) do
@@ -73,7 +71,6 @@ namespace :deploy do
   task :symlink do
     on roles(:all) do
       execute "ln -s #{shared_path}/config/application.yml #{release_path}/config/application.yml"
-      execute "ln -s #{shared_path}/Procfile #{release_path}/Procfile"
       execute "ln -s #{shared_path}/system #{release_path}/public/system"
     end
   end
