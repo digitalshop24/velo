@@ -57,7 +57,7 @@ namespace :db do
           if ar_product
             ar_product.onliner_key = product['key']
             ar_product.old_onliner_price = ar_product.onliner_price
-            ar_product.onliner_price = product['prices']['min'] if product['prices'] && product['prices']['min']
+            ar_product.onliner_price = product['prices']['min'] if product['prices'] && product['prices']['min'] && (!ar_product.onliner_price.present? || ar_product.onliner_price > product['prices']['min'])
             ar_product.save if ar_product.changed?
           end
         end
